@@ -10,77 +10,37 @@ import TeamModal from '@/components/ui/TeamModal'
 import { TEAM_MEMBERS } from '@/lib/constants'
 import type { TeamMember } from '@/lib/types'
 
-// Triple for seamless infinite loop
+// Triple for seamless infinite loop (desktop marquee)
 const track = [...TEAM_MEMBERS, ...TEAM_MEMBERS, ...TEAM_MEMBERS]
-
-const CARD_WIDTH = 300
-const CARD_GAP = 20
-const CARD_STEP = CARD_WIDTH + CARD_GAP
-const SCROLL_SPEED = 0.5 // px per frame
 
 export default function Team() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.15 })
   const [selected, setSelected] = useState<TeamMember | null>(null)
 
-  // Mobile marquee + swipe
+  // Mobile scroll + dots
   const mobileRef = useRef<HTMLDivElement>(null)
-  const rafRef = useRef<number>()
-  const isPaused = useRef(false)
   const [activeIndex, setActiveIndex] = useState(0)
 
-  // One-third of the total scroll width = one full set of members
-  const oneThird = CARD_STEP * TEAM_MEMBERS.length
-
-  const tick = useCallback(() => {
+  const handleScroll = useCallback(() => {
     const el = mobileRef.current
     if (!el) return
-    if (!isPaused.current) {
-      el.scrollLeft += SCROLL_SPEED
-      // Seamless loop: when we pass the first copy, jump back silently
-      if (el.scrollLeft >= oneThird * 2) {
-        el.scrollLeft -= oneThird
-      }
-      // Active dot based on position within one set
-      const posInSet = el.scrollLeft % oneThird
-      const idx = Math.round(posInSet / CARD_STEP) % TEAM_MEMBERS.length
-      setActiveIndex(idx)
-    }
-    rafRef.current = requestAnimationFrame(tick)
-  }, [oneThird])
+    const cardWidth = 300 + 20 // CARD_WIDTH + CARD_GAP
+    const idx = Math.round(el.scrollLeft / cardWidth)
+    setActiveIndex(Math.min(idx, TEAM_MEMBERS.length - 1))
+  }, [])
 
   useEffect(() => {
-    if (!isInView) return
-    rafRef.current = requestAnimationFrame(tick)
-    return () => {
-      if (rafRef.current) cancelAnimationFrame(rafRef.current)
-    }
-  }, [isInView, tick])
-
-  const handleTouchStart = () => {
-    isPaused.current = true
-  }
-
-  const handleTouchEnd = () => {
-    // Snap to nearest card then resume
     const el = mobileRef.current
     if (!el) return
-    const posInSet = el.scrollLeft % oneThird
-    const snapIndex = Math.round(posInSet / CARD_STEP)
-    const snappedPos = Math.floor(el.scrollLeft / oneThird) * oneThird + snapIndex * CARD_STEP
-    el.scrollTo({ left: snappedPos, behavior: 'smooth' })
-    setActiveIndex(snapIndex % TEAM_MEMBERS.length)
-    setTimeout(() => { isPaused.current = false }, 1200)
-  }
+    el.addEventListener('scroll', handleScroll, { passive: true })
+    return () => el.removeEventListener('scroll', handleScroll)
+  }, [handleScroll])
 
   const scrollToIndex = (index: number) => {
     const el = mobileRef.current
     if (!el) return
-    isPaused.current = true
-    const base = Math.floor(el.scrollLeft / oneThird) * oneThird
-    el.scrollTo({ left: base + index * CARD_STEP, behavior: 'smooth' })
-    setActiveIndex(index)
-    setTimeout(() => { isPaused.current = false }, 1200)
+    el.scrollTo({ left: index * 320, behavior: 'smooth' })
   }
 
   return (
@@ -115,7 +75,7 @@ export default function Team() {
           </motion.div>
         </div>
 
-        {/* ── Desktop: CSS marquee ── */}
+        {/* ── Desktop: auto-scrolling marquee ── */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
@@ -149,20 +109,18 @@ export default function Team() {
           </motion.div>
         </motion.div>
 
-        {/* ── Mobile: auto-scroll marquee + swipeable ── */}
+        {/* ── Mobile: free swipe scroll + snap + dots ── */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
           className="md:hidden relative"
         >
-          {/* Left fade */}
           <div
             className="absolute left-0 top-0 bottom-8 w-8 z-10 pointer-events-none"
             style={{ background: 'linear-gradient(to right, #ffffff, transparent)' }}
             aria-hidden="true"
           />
-          {/* Right fade */}
           <div
             className="absolute right-0 top-0 bottom-8 w-8 z-10 pointer-events-none"
             style={{ background: 'linear-gradient(to left, #ffffff, transparent)' }}
@@ -171,23 +129,22 @@ export default function Team() {
 
           <div
             ref={mobileRef}
-            onTouchStart={handleTouchStart}
-            onTouchEnd={handleTouchEnd}
             className="flex overflow-x-auto pb-4"
             style={{
-              gap: `${CARD_GAP}px`,
+              gap: '20px',
               paddingLeft: '24px',
               paddingRight: '24px',
+              scrollSnapType: 'x mandatory',
+              WebkitOverflowScrolling: 'touch',
               scrollbarWidth: 'none',
               msOverflowStyle: 'none',
-              WebkitOverflowScrolling: 'touch',
             }}
           >
-            {track.map((member, i) => (
-              <div key={`m-${member.id}-${i}`} style={{ flexShrink: 0 }}>
+            {TEAM_MEMBERS.map((member, i) => (
+              <div key={member.id} style={{ flexShrink: 0, scrollSnapAlign: 'center' }}>
                 <TeamCard
                   member={member}
-                  index={i % TEAM_MEMBERS.length}
+                  index={i}
                   onClick={() => setSelected(member)}
                 />
               </div>
