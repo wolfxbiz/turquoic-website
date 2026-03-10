@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install)",
+      "Bash(npx tsc --noEmit)",
+      "Bash(npm run build)",
+      "Bash(7z l \"c:/Users/vimal/turquoic/SF-Pro.dmg\")",
+      "Read(//c/Program Files/7-Zip/**)",
+      "Read(//c/Program Files \\(x86\\)/7-Zip/**)",
+      "Bash(python -c \"import struct; f=open\\(''c:/Users/vimal/turquoic/SF-Pro.dmg'',''rb''\\); print\\(f.read\\(8\\).hex\\(\\)\\); f.close\\(\\)\")",
+      "Bash(winget install --id 7zip.7zip -e --silent --accept-package-agreements --accept-source-agreements)",
+      "Bash(\"/c/Program Files/7-Zip/7z.exe\" l \"c:/Users/vimal/turquoic/SF-Pro.dmg\")",
+      "Bash(\"/c/Program Files/7-Zip/7z.exe\" l \"c:/Users/vimal/turquoic/_sfpro_extract/SF Pro Fonts.pkg\")",
+      "Bash(\"/c/Program Files/7-Zip/7z.exe\" l \"c:/Users/vimal/turquoic/_sfpro_extract/Payload.cpio\")",
+      "Bash(pip install fonttools brotli --quiet)",
+      "Read(//c/Users/vimal/turquoic/**)",
+      "Bash(ls \"c:/Users/vimal/turquoic/\"*.png)",
+      "Bash(git init)",
+      "Bash(git add .)",
+      "Bash(git commit:*)",
+      "Bash(git push -u origin main)",
+      "Bash(git checkout --orphan clean-main)",
+      "Bash(git rm -rf --cached .)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\vimal\\turquoic",
+      "c:\\Users\\vimal\\turquoic"
+    ]
+  }
+}
