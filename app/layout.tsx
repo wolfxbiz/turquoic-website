@@ -15,6 +15,11 @@ export const metadata: Metadata = {
     'revenue growth',
     'IT solutions',
   ],
+  icons: {
+    icon: '/favicon.png',
+    shortcut: '/favicon.png',
+    apple: '/favicon.png',
+  },
   openGraph: {
     title: 'Turquoic — AI-Powered Business Solutions',
     description: 'Work Smarter. Grow Faster. Live Better.',
