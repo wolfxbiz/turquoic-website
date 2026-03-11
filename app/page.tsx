@@ -9,6 +9,7 @@ import CapabilityProgramme from '@/components/sections/CapabilityProgramme'
 import Process from '@/components/sections/Process'
 import Testimonials from '@/components/sections/Testimonials'
 import Team from '@/components/sections/Team'
+import RougeStars from '@/components/sections/RougeStars'
 import Contact from '@/components/sections/Contact'
 import MarqueeStrip from '@/components/ui/MarqueeStrip'
 export default function Home() {
@@ -25,6 +26,7 @@ export default function Home() {
       <Process />
       <Testimonials />
       <Team />
+      <RougeStars />
       <Contact />
       <Footer />
     </main>
