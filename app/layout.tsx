@@ -24,13 +24,14 @@ export const metadata: Metadata = {
     title: 'Turquoic — AI-Powered Business Solutions',
     description: 'Work Smarter. Grow Faster. Live Better.',
     type: 'website',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Turquoic' }],
+    url: 'https://www.turquoic.com',
+    images: [{ url: 'https://www.turquoic.com/og-image.png', width: 1200, height: 630, alt: 'Turquoic' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Turquoic — AI-Powered Business Solutions',
     description: 'Work Smarter. Grow Faster. Live Better.',
-    images: ['/og-image.png'],
+    images: ['https://www.turquoic.com/og-image.png'],
   },
 }
 
