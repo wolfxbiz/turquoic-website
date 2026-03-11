@@ -20,7 +20,11 @@
       "Bash(git commit:*)",
       "Bash(git push -u origin main)",
       "Bash(git checkout --orphan clean-main)",
-      "Bash(git rm -rf --cached .)"
+      "Bash(git rm -rf --cached .)",
+      "WebFetch(domain:www.turquoic.com)",
+      "Bash(python -c \":*)",
+      "Bash(magick \"Turquoic.png\" -resize 1200x630^ -gravity center -extent 1200x630 -quality 85 \"public/og-image.jpg\")",
+      "Bash(npm install --save-dev sharp -D)"
     ],
     "additionalDirectories": [
       "C:\\Users\\vimal\\turquoic",
