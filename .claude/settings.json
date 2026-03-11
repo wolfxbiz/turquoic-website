@@ -24,7 +24,8 @@
       "WebFetch(domain:www.turquoic.com)",
       "Bash(python -c \":*)",
       "Bash(magick \"Turquoic.png\" -resize 1200x630^ -gravity center -extent 1200x630 -quality 85 \"public/og-image.jpg\")",
-      "Bash(npm install --save-dev sharp -D)"
+      "Bash(npm install --save-dev sharp -D)",
+      "Bash(node -e \":*)"
     ],
     "additionalDirectories": [
       "C:\\Users\\vimal\\turquoic",
