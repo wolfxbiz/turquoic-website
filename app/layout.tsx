@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     description: 'Work Smarter. Grow Faster. Live Better.',
     type: 'website',
     url: 'https://www.turquoic.com',
-    images: [{ url: 'https://www.turquoic.com/og-image.jpg', width: 1200, height: 630, alt: 'Turquoic' }],
+    images: [{ url: 'https://www.turquoic.com/og-image.jpg', secureUrl: 'https://www.turquoic.com/og-image.jpg', width: 1200, height: 630, alt: 'Turquoic', type: 'image/jpeg' }],
   },
   twitter: {
     card: 'summary_large_image',
