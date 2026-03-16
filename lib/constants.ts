@@ -285,6 +285,16 @@ export const TEAM_MEMBERS: TeamMember[] = [
     skills: ['Development', 'AI Integration'],
     social: { linkedin: '#', website: '#' }, // TODO: add real social URLs
   },
+  {
+    id: 'abhishek-vb',
+    name: 'Abhishek VB',
+    role: 'Video Editor & Presenter',
+    image: '/images/team/Abhishek VB - Video Editor & Presenter.png',
+    initials: 'AV',
+    tagline: 'Crafting stories that captivate and convert.',
+    skills: ['Video Editing', 'Presenting', 'Creative'],
+    social: { linkedin: '#', website: '#' }, // TODO: add real social URLs
+  },
 ]
 
 export const CAPABILITY_SECTION = {
