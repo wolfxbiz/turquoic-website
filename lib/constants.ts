@@ -295,6 +295,26 @@ export const TEAM_MEMBERS: TeamMember[] = [
     skills: ['Video Editing', 'Presenting', 'Creative'],
     social: { linkedin: '#', website: '#' }, // TODO: add real social URLs
   },
+  {
+    id: 'jisha-mathew',
+    name: 'Jisha Mathew Panjikaran',
+    role: 'Web Developer',
+    image: '/images/team/Jisha Mathew Panjikaran - Web Developer.png',
+    initials: 'JM',
+    tagline: 'Building web experiences that work.',
+    skills: ['Web Development', 'Frontend', 'Creative'],
+    social: { linkedin: '#', website: '#' }, // TODO: add real social URLs
+  },
+  {
+    id: 'simi-sl',
+    name: 'Simi S L',
+    role: 'Web Developer',
+    image: '/images/team/Simi S L - Web Developer.png',
+    initials: 'SS',
+    tagline: 'Turning designs into seamless digital experiences.',
+    skills: ['Web Development', 'Frontend', 'Creative'],
+    social: { linkedin: '#', website: '#' }, // TODO: add real social URLs
+  },
 ]
 
 export const CAPABILITY_SECTION = {
