@@ -18,14 +18,14 @@ export default function Team() {
   const isInView = useInView(ref, { once: true, amount: 0.15 })
   const [selected, setSelected] = useState<TeamMember | null>(null)
 
-  // Mobile scroll + dots
+  // ── Mobile scroll + dots ──
   const mobileRef = useRef<HTMLDivElement>(null)
   const [activeIndex, setActiveIndex] = useState(0)
 
   const handleScroll = useCallback(() => {
     const el = mobileRef.current
     if (!el) return
-    const cardWidth = 300 + 20 // CARD_WIDTH + CARD_GAP
+    const cardWidth = 300 + 20
     const idx = Math.round(el.scrollLeft / cardWidth)
     setActiveIndex(Math.min(idx, TEAM_MEMBERS.length - 1))
   }, [])
@@ -42,6 +42,64 @@ export default function Team() {
     if (!el) return
     el.scrollTo({ left: index * 320, behavior: 'smooth' })
   }
+
+  // ── Desktop marquee: RAF auto-scroll + mouse drag ──
+  const desktopScrollRef = useRef<HTMLDivElement>(null)
+  const isDraggingDesktop = useRef(false)
+  const hasDragged = useRef(false)
+  const dragStartX = useRef(0)
+  const dragStartScroll = useRef(0)
+  const rafRef = useRef<number>()
+  const [isGrabbing, setIsGrabbing] = useState(false)
+
+  useEffect(() => {
+    if (!isInView) return
+    const el = desktopScrollRef.current
+    if (!el) return
+
+    const getOneThird = () => el.scrollWidth / 3
+    // Start in the middle third for seamless bidirectional looping
+    el.scrollLeft = getOneThird()
+
+    const tick = () => {
+      if (!isDraggingDesktop.current) {
+        el.scrollLeft += 1
+        const oneThird = getOneThird()
+        if (el.scrollLeft >= oneThird * 2) el.scrollLeft -= oneThird
+        if (el.scrollLeft <= 0) el.scrollLeft += oneThird
+      }
+      rafRef.current = requestAnimationFrame(tick)
+    }
+
+    rafRef.current = requestAnimationFrame(tick)
+    return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current) }
+  }, [isInView])
+
+  const onMouseDown = useCallback((e: React.MouseEvent) => {
+    isDraggingDesktop.current = true
+    hasDragged.current = false
+    setIsGrabbing(true)
+    dragStartX.current = e.clientX
+    dragStartScroll.current = desktopScrollRef.current?.scrollLeft ?? 0
+  }, [])
+
+  const onMouseMove = useCallback((e: React.MouseEvent) => {
+    if (!isDraggingDesktop.current) return
+    const el = desktopScrollRef.current
+    if (!el) return
+    e.preventDefault()
+    const dx = e.clientX - dragStartX.current
+    if (Math.abs(dx) > 5) hasDragged.current = true
+    el.scrollLeft = dragStartScroll.current - dx
+    const oneThird = el.scrollWidth / 3
+    if (el.scrollLeft >= oneThird * 2) el.scrollLeft -= oneThird
+    if (el.scrollLeft <= 0) el.scrollLeft += oneThird
+  }, [])
+
+  const onMouseUp = useCallback(() => {
+    isDraggingDesktop.current = false
+    setIsGrabbing(false)
+  }, [])
 
   return (
     <>
@@ -75,7 +133,7 @@ export default function Team() {
           </motion.div>
         </div>
 
-        {/* ── Desktop: auto-scrolling marquee ── */}
+        {/* ── Desktop: scroll-based marquee with drag support ── */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
@@ -92,21 +150,33 @@ export default function Team() {
             style={{ background: 'linear-gradient(to left, #ffffff, transparent)' }}
             aria-hidden="true"
           />
-          <motion.div
-            className="flex items-end gap-8 w-max px-8"
-            animate={{ x: ['0%', '-33.333%'] }}
-            transition={{ duration: 60, ease: 'linear', repeat: Infinity, repeatType: 'loop' }}
-            whileHover={{ animationPlayState: 'paused' } as never}
+          <div
+            ref={desktopScrollRef}
+            className="overflow-x-scroll"
+            style={{
+              scrollbarWidth: 'none',
+              msOverflowStyle: 'none',
+              cursor: isGrabbing ? 'grabbing' : 'grab',
+              userSelect: 'none',
+            }}
+            onMouseDown={onMouseDown}
+            onMouseMove={onMouseMove}
+            onMouseUp={onMouseUp}
+            onMouseLeave={onMouseUp}
           >
-            {track.map((member, i) => (
-              <TeamCard
-                key={`${member.id}-${i}`}
-                member={member}
-                index={i % TEAM_MEMBERS.length}
-                onClick={() => setSelected(member)}
-              />
-            ))}
-          </motion.div>
+            <div className="flex items-end gap-8 w-max px-8">
+              {track.map((member, i) => (
+                <TeamCard
+                  key={`${member.id}-${i}`}
+                  member={member}
+                  index={i % TEAM_MEMBERS.length}
+                  onClick={() => {
+                    if (!hasDragged.current) setSelected(member)
+                  }}
+                />
+              ))}
+            </div>
+          </div>
         </motion.div>
 
         {/* ── Mobile: free swipe scroll + snap + dots ── */}
