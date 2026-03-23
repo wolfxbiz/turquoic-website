@@ -254,26 +254,26 @@ export default function Hero() {
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 1.0 }}
-        className="relative z-10 w-full bg-white py-4 sm:py-3 overflow-hidden"
+        className="relative z-10 w-full bg-white py-6 sm:py-8 overflow-hidden"
       >
-        <p className="text-center font-body text-[11px] uppercase tracking-[0.15em] text-muted mb-3">
+        <p className="text-center font-body text-[11px] uppercase tracking-[0.15em] text-muted mb-5">
           Trusted by leading organisations worldwide
         </p>
 
         <div className="relative">
           <div
-            className="absolute left-0 top-0 bottom-0 w-12 sm:w-20 z-10 pointer-events-none"
+            className="absolute left-0 top-0 bottom-0 w-16 sm:w-28 z-10 pointer-events-none"
             style={{ background: 'linear-gradient(to right, #ffffff, transparent)' }}
             aria-hidden="true"
           />
           <div
-            className="absolute right-0 top-0 bottom-0 w-12 sm:w-20 z-10 pointer-events-none"
+            className="absolute right-0 top-0 bottom-0 w-16 sm:w-28 z-10 pointer-events-none"
             style={{ background: 'linear-gradient(to left, #ffffff, transparent)' }}
             aria-hidden="true"
           />
 
           <motion.div
-            className="flex items-center gap-4 sm:gap-6 md:gap-8 w-max"
+            className="flex items-center gap-10 sm:gap-14 md:gap-16 w-max"
             animate={{ x: ['0%', '-33.333%'] }}
             transition={{ duration: 50, ease: 'linear', repeat: Infinity, repeatType: 'loop' }}
             whileHover={{ animationPlayState: 'paused' } as never}
@@ -281,7 +281,7 @@ export default function Hero() {
             {track.map((logo, i) => (
               <div
                 key={i}
-                className="flex-shrink-0 flex items-center justify-center px-3 sm:px-4 h-12 md:h-[56px]"
+                className="flex-shrink-0 flex items-center justify-center px-4 sm:px-6 h-14 md:h-[60px]"
               >
                 <Image
                   src={logo.src}
