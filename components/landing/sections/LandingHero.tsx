@@ -82,7 +82,7 @@ export default function LandingHero() {
           </p>
 
           <div className="flex flex-col gap-3 w-full mb-6">
-            <LandingButton href="#pricing" fullWidth>
+            <LandingButton href="https://wa.me/919400061111?text=Hi%2C%20I%27d%20like%20to%20start%20a%20project%20with%20Turquoic." target="_blank" fullWidth>
               Start Your Project →
             </LandingButton>
             <LandingButton href="#services" variant="secondary" fullWidth>
@@ -206,7 +206,7 @@ export default function LandingHero() {
               transition={{ duration: 0.6, delay: allWords.length * 0.08 + 0.3 }}
               className="flex items-start gap-4 mb-10"
             >
-              <LandingButton href="#pricing">
+              <LandingButton href="https://wa.me/919400061111?text=Hi%2C%20I%27d%20like%20to%20start%20a%20project%20with%20Turquoic." target="_blank">
                 Start Your Project →
               </LandingButton>
               <LandingButton href="#services" variant="secondary">

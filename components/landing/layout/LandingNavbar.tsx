@@ -56,7 +56,7 @@ export default function LandingNavbar() {
                 <span className="absolute -bottom-1 left-0 h-[1.5px] w-0 group-hover:w-full transition-all duration-300 bg-teal-strong" />
               </a>
             ))}
-            <LandingButton href="#contact">
+            <LandingButton href="https://wa.me/919400061111?text=Hi%2C%20I%27d%20like%20to%20start%20a%20project%20with%20Turquoic." target="_blank">
               Start Your Project
             </LandingButton>
           </div>
@@ -96,7 +96,7 @@ export default function LandingNavbar() {
               </motion.a>
             ))}
             <LandingButton
-              href="#contact"
+              href="https://wa.me/919400061111?text=Hi%2C%20I%27d%20like%20to%20start%20a%20project%20with%20Turquoic." target="_blank"
               fullWidth
               onClick={() => setMobileOpen(false)}
             >

@@ -6,6 +6,7 @@ interface LandingButtonProps {
   children: React.ReactNode
   variant?: 'primary' | 'secondary'
   href?: string
+  target?: string
   onClick?: () => void
   className?: string
   fullWidth?: boolean
@@ -15,6 +16,7 @@ export default function LandingButton({
   children,
   variant = 'primary',
   href,
+  target,
   onClick,
   className = '',
   fullWidth = false,
@@ -39,7 +41,7 @@ export default function LandingButton({
 
   if (href) {
     return (
-      <motion.a href={href} className={combined} {...motionProps}>
+      <motion.a href={href} target={target} rel={target === '_blank' ? 'noopener noreferrer' : undefined} className={combined} {...motionProps}>
         {children}
       </motion.a>
     )

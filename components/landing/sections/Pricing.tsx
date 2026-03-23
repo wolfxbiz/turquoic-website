@@ -95,7 +95,7 @@ export default function Pricing() {
 
               {/* CTA */}
               <LandingButton
-                href="#contact"
+                href="https://wa.me/919400061111?text=Hi%2C%20I%27d%20like%20to%20start%20a%20project%20with%20Turquoic." target="_blank"
                 fullWidth
               >
                 {tier.cta}

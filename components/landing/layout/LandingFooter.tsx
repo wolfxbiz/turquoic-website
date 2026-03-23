@@ -24,7 +24,7 @@ export default function LandingFooter() {
               </a>
             ))}
             <a
-              href="#contact"
+              href="https://wa.me/919400061111?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20Turquoic." target="_blank"
               className="font-body text-[15px] font-medium text-white/60 hover:text-teal-strong transition-colors uppercase"
             >
               Contact

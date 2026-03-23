@@ -49,7 +49,7 @@ export default function FinalCta() {
           animate={isInView ? { opacity: 1, y: 0 } : undefined}
           transition={{ delay: 0.4, duration: 0.7, ease: 'easeOut' }}
         >
-          <LandingButton href="#pricing">
+          <LandingButton href="https://wa.me/919400061111?text=Hi%2C%20I%27d%20like%20to%20book%20a%20free%20discovery%20call." target="_blank">
             Book a Free Discovery Call →
           </LandingButton>
           <p className="font-body text-sm text-white/60">
