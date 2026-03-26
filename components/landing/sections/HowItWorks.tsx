@@ -78,7 +78,7 @@ export default function HowItWorks() {
               <h3 className="font-display font-bold text-lg text-dark uppercase mb-2">
                 {step.title}
               </h3>
-              <p className="font-body text-muted text-[14px] leading-relaxed max-w-[220px]">
+              <p className="font-body text-muted text-[16px] leading-relaxed max-w-[220px]">
                 {step.description}
               </p>
 

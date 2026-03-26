@@ -5,10 +5,12 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { LANDING_NAV_LINKS } from '@/lib/landing-constants'
 import LandingButton from '@/components/landing/ui/LandingButton'
+import { useConsultationModal } from '@/components/landing/ConsultationModalContext'
 
 export default function LandingNavbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const { open, bannerVisible } = useConsultationModal()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60)
@@ -21,10 +23,12 @@ export default function LandingNavbar() {
     return () => { document.body.style.overflow = '' }
   }, [mobileOpen])
 
+  const topOffset = bannerVisible ? 'top-10' : 'top-0'
+
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed ${topOffset} left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
             ? 'bg-white/90 backdrop-blur-md border-b border-teal-mid/30 shadow-sm'
             : 'bg-transparent'
@@ -34,29 +38,21 @@ export default function LandingNavbar() {
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <a
-            href="#"
-            className="font-display font-bold text-[22px] tracking-tight uppercase text-teal-accent"
-          >
+          <a href="#" className="font-display font-bold text-[22px] tracking-tight uppercase text-teal-accent">
             Turquoic
           </a>
 
           {/* Desktop nav links */}
           <div className="hidden md:flex items-center gap-8">
             {LANDING_NAV_LINKS.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="relative group"
-              >
+              <a key={link.href} href={link.href} className="relative group">
                 <span className="font-body text-[15px] font-medium uppercase text-dark transition-colors duration-200">
                   {link.label}
                 </span>
-                {/* Underline on hover */}
                 <span className="absolute -bottom-1 left-0 h-[1.5px] w-0 group-hover:w-full transition-all duration-300 bg-teal-strong" />
               </a>
             ))}
-            <LandingButton href="https://wa.me/919400061111?text=Hi%2C%20I%27d%20like%20to%20start%20a%20project%20with%20Turquoic." target="_blank">
+            <LandingButton onClick={open}>
               Start Your Project
             </LandingButton>
           </div>
@@ -96,9 +92,8 @@ export default function LandingNavbar() {
               </motion.a>
             ))}
             <LandingButton
-              href="https://wa.me/919400061111?text=Hi%2C%20I%27d%20like%20to%20start%20a%20project%20with%20Turquoic." target="_blank"
               fullWidth
-              onClick={() => setMobileOpen(false)}
+              onClick={() => { setMobileOpen(false); open() }}
             >
               Start Your Project
             </LandingButton>

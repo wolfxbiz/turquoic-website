@@ -3,10 +3,12 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import LandingButton from '@/components/landing/ui/LandingButton'
+import { useConsultationModal } from '@/components/landing/ConsultationModalContext'
 
 export default function FinalCta() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-10% 0px' })
+  const { open } = useConsultationModal()
 
   return (
     <section
@@ -34,7 +36,7 @@ export default function FinalCta() {
         </motion.h2>
 
         <motion.p
-          className="font-body text-lg text-white/80 mb-10 leading-relaxed"
+          className="font-body text-xl text-white/80 mb-10 leading-relaxed"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : undefined}
           transition={{ delay: 0.2, duration: 0.7, ease: 'easeOut' }}
@@ -49,10 +51,10 @@ export default function FinalCta() {
           animate={isInView ? { opacity: 1, y: 0 } : undefined}
           transition={{ delay: 0.4, duration: 0.7, ease: 'easeOut' }}
         >
-          <LandingButton href="https://wa.me/919400061111?text=Hi%2C%20I%27d%20like%20to%20book%20a%20free%20discovery%20call." target="_blank">
+          <LandingButton onClick={open}>
             Book a Free Discovery Call →
           </LandingButton>
-          <p className="font-body text-sm text-white/60">
+          <p className="font-body text-[15px] text-white/60">
             Or message us directly — we respond within 1 hour
           </p>
         </motion.div>

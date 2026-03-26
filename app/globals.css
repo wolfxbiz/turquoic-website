@@ -111,3 +111,21 @@ body {
 .section-pad {
   padding: 6rem 0;
 }
+
+/* Animated lime underline sweep — works on multi-line inline text */
+@keyframes underline-sweep {
+  0%          { background-size: 0% 2px; }
+  44%         { background-size: 100% 2px; }
+  76%         { background-size: 100% 2px; }
+  77%, 100%   { background-size: 0% 2px; }
+}
+
+.desc-highlight {
+  background-image: linear-gradient(#C8E600, #C8E600);
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 0% 2px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  animation: underline-sweep 2.5s ease-out infinite;
+}

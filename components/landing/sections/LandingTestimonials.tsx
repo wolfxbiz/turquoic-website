@@ -46,8 +46,8 @@ export default function LandingTestimonials() {
         >
           <div className="inline-flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-[0_4px_16px_rgba(45,212,192,0.12)]">
             <Star className="w-4 h-4 text-teal-strong fill-teal-strong" />
-            <span className="font-body font-semibold text-dark text-sm">4.9/5</span>
-            <span className="font-body text-muted text-sm">overall rating</span>
+            <span className="font-body font-semibold text-dark text-[15px]">4.9/5</span>
+            <span className="font-body text-muted text-[15px]">overall rating</span>
           </div>
         </motion.div>
 
@@ -72,7 +72,7 @@ export default function LandingTestimonials() {
               </div>
 
               {/* Quote */}
-              <p className="font-body text-dark text-[14px] leading-relaxed mb-6 flex-1">
+              <p className="font-body text-dark text-[16px] leading-relaxed mb-6 flex-1">
                 &ldquo;{testimonial.quote}&rdquo;
               </p>
 
@@ -87,7 +87,7 @@ export default function LandingTestimonials() {
                   </span>
                 </div>
                 <div>
-                  <p className="font-body font-semibold text-dark text-sm">
+                  <p className="font-body font-semibold text-dark text-[15px]">
                     {testimonial.name}
                   </p>
                   <p className="font-body text-teal-accent text-xs font-medium">

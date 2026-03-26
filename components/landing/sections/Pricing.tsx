@@ -6,10 +6,12 @@ import { Check } from 'lucide-react'
 import { staggerContainer, fadeUp } from '@/lib/animations'
 import { LANDING_PRICING_TIERS } from '@/lib/landing-constants'
 import LandingButton from '@/components/landing/ui/LandingButton'
+import { useConsultationModal } from '@/components/landing/ConsultationModalContext'
 
 export default function Pricing() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-10% 0px' })
+  const { open } = useConsultationModal()
 
   return (
     <section id="pricing" className="bg-white py-24 lg:py-32">
@@ -78,7 +80,7 @@ export default function Pricing() {
                     ${tier.price.toLocaleString()}
                   </span>
                 </div>
-                <p className="font-body text-sm text-muted mt-2">{tier.description}</p>
+                <p className="font-body text-[15px] text-muted mt-2">{tier.description}</p>
               </div>
 
               {/* Feature list */}
@@ -88,16 +90,13 @@ export default function Pricing() {
                     <span className="w-5 h-5 rounded-full bg-teal-strong flex items-center justify-center flex-shrink-0 mt-0.5">
                       <Check className="w-[11px] h-[11px] text-white" strokeWidth={3} />
                     </span>
-                    <span className="font-body text-[15px] text-muted leading-relaxed">{feature}</span>
+                    <span className="font-body text-[17px] text-muted leading-relaxed">{feature}</span>
                   </li>
                 ))}
               </ul>
 
               {/* CTA */}
-              <LandingButton
-                href="https://wa.me/919400061111?text=Hi%2C%20I%27d%20like%20to%20start%20a%20project%20with%20Turquoic." target="_blank"
-                fullWidth
-              >
+              <LandingButton onClick={open} fullWidth>
                 {tier.cta}
               </LandingButton>
             </motion.div>

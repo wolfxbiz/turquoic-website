@@ -7,6 +7,12 @@ import * as LucideIcons from 'lucide-react'
 import { staggerContainer, wordReveal } from '@/lib/animations'
 import { LANDING_TRUST_ITEMS } from '@/lib/landing-constants'
 import LandingButton from '@/components/landing/ui/LandingButton'
+import { useConsultationModal } from '@/components/landing/ConsultationModalContext'
+
+// Banner = 40px (h-10), Navbar = 64px mobile / 80px desktop
+const BANNER_H = 40
+const NAV_MOBILE = 64
+const NAV_DESKTOP = 80
 
 const logos = [
   { src: '/assets/logos/hsbc.png',                 alt: 'HSBC',                 w: 120 },
@@ -31,6 +37,10 @@ const headline3 = 'FOR YOUR BUSINESS.'
 export default function LandingHero() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-5% 0px' })
+  const { open, bannerVisible } = useConsultationModal()
+  const bannerOffset = bannerVisible ? BANNER_H : 0
+  const mobileTop = NAV_MOBILE + bannerOffset   // 64 or 104
+  const desktopTop = NAV_DESKTOP + bannerOffset  // 80 or 120
 
   const words1 = headline1.split(' ')
   const words2 = headline2.split(' ')
@@ -45,7 +55,7 @@ export default function LandingHero() {
       ═══════════════════════════════════════════ */}
 
       {/* Mobile hero image — ON TOP, right after navbar */}
-      <div className="md:hidden relative w-full pt-16 overflow-hidden">
+      <div className="md:hidden relative w-full overflow-hidden" style={{ paddingTop: mobileTop }}>
         <Image
           src="/assets/images/landing-hero.png"
           alt="Turquoic — AI-powered web application development"
@@ -75,14 +85,14 @@ export default function LandingHero() {
             {headline1}<br />{headline2}<br />{headline3}
           </h1>
 
-          <p className="font-body text-[15px] text-muted leading-relaxed mb-6">
+          <p className="font-body text-[17px] text-muted leading-relaxed mb-6">
             From custom websites to AI-integrated platforms — we design,
             develop, and deploy full-stack software that helps your
             business grow.
           </p>
 
           <div className="flex flex-col gap-3 w-full mb-6">
-            <LandingButton href="https://wa.me/919400061111?text=Hi%2C%20I%27d%20like%20to%20start%20a%20project%20with%20Turquoic." target="_blank" fullWidth>
+            <LandingButton onClick={open} fullWidth>
               Start Your Project →
             </LandingButton>
             <LandingButton href="#services" variant="secondary" fullWidth>
@@ -119,11 +129,12 @@ export default function LandingHero() {
       {/* ═══════════════════════════════════════════
           DESKTOP LAYOUT (md and up)
       ═══════════════════════════════════════════ */}
-      <div className="hidden md:flex min-h-screen bg-white items-center overflow-hidden">
+      <div className="hidden md:flex min-h-screen bg-white items-center overflow-hidden"
+           style={{ paddingTop: desktopTop }}>
 
         {/* LEFT — Text content */}
         <motion.div
-          className="w-[42%] lg:w-[40%] flex-shrink-0 pl-10 lg:pl-20 xl:pl-28 pr-6 lg:pr-10 py-20"
+          className="w-[42%] lg:w-[40%] flex-shrink-0 pl-10 lg:pl-20 xl:pl-28 pr-6 lg:pr-10 pb-20"
           initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, ease: 'easeOut' }}
@@ -192,7 +203,7 @@ export default function LandingHero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: allWords.length * 0.08 + 0.15 }}
-              className="font-body text-[16px] lg:text-[18px] text-muted max-w-md mb-8 leading-relaxed"
+              className="font-body text-[17px] lg:text-[19px] text-muted max-w-md mb-8 leading-relaxed"
             >
               From custom websites to AI-integrated platforms — we design,
               develop, and deploy full-stack software that helps your
@@ -206,7 +217,7 @@ export default function LandingHero() {
               transition={{ duration: 0.6, delay: allWords.length * 0.08 + 0.3 }}
               className="flex items-start gap-4 mb-10"
             >
-              <LandingButton href="https://wa.me/919400061111?text=Hi%2C%20I%27d%20like%20to%20start%20a%20project%20with%20Turquoic." target="_blank">
+              <LandingButton onClick={open}>
                 Start Your Project →
               </LandingButton>
               <LandingButton href="#services" variant="secondary">

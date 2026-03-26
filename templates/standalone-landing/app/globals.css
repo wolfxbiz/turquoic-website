@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Brandon Text — self-hosted ──────────────────────────────────
+   Place these font files in /public/assets/fonts/
+   Get them from the main Turquoic project: public/assets/fonts/
+   ──────────────────────────────────────────────────────────────── */
+@font-face {
+  font-family: 'Brandon Text';
+  src: url('/assets/fonts/BrandonText-w100.woff2') format('woff2');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Brandon Text';
+  src: url('/assets/fonts/BrandonText-w300.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Brandon Text';
+  src: url('/assets/fonts/BrandonText-w400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Brandon Text';
+  src: url('/assets/fonts/BrandonText-w500.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Brandon Text';
+  src: url('/assets/fonts/BrandonText-w700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Brandon Text';
+  src: url('/assets/fonts/BrandonText-w900.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --color-bg: #FFFFFF;
+  --color-bg-alt: #F7FFFE;
+  --color-teal-light: #E0FAF8;
+  --color-teal-mid: #7FE8DC;
+  --color-teal-strong: #2DD4C0;
+  --color-teal-accent: #0EA5A0;
+  --color-lime: #C8E600;
+  --color-olive: #556000;
+  --color-text-dark: #1A1A1A;
+  --color-text-muted: #555555;
+  --gradient-hero: linear-gradient(135deg, #E0FAF8 0%, #7FE8DC 50%, #2DD4C0 100%);
+  --gradient-card: linear-gradient(135deg, rgba(224,250,248,0.9) 0%, rgba(64,224,208,0.35) 100%);
+  --radius-card: 28px;
+  --radius-btn: 14px;
+  --font-brandon: 'Brandon Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-brandon);
+  background: #FFFFFF;
+  color: #1A1A1A;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #F7FFFE; }
+::-webkit-scrollbar-thumb { background: #2DD4C0; border-radius: 3px; }
+
+::selection { background: #C8E600; color: #556000; }

@@ -1,0 +1,16 @@
+Place the following Brandon Text font files in this folder:
+
+  BrandonText-w100.woff2
+  BrandonText-w300.woff2
+  BrandonText-w400.woff2
+  BrandonText-w500.woff2
+  BrandonText-w700.woff2
+  BrandonText-w900.woff2
+
+Copy them from the main Turquoic project:
+  public/assets/fonts/
+
+Brandon Text is a licensed commercial font (HVD Fonts).
+You must own a valid license to use it.
+
+Without these files the page will fall back to Helvetica Neue / Arial.
