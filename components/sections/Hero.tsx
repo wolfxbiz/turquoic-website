@@ -161,9 +161,8 @@ export default function Hero() {
 
       {/* Main content — desktop */}
       <motion.div
-        style={{ y: contentY }}
+        style={{ y: contentY, paddingTop: topOffset }}
         className="hidden md:flex relative z-10 flex-1 items-center"
-        style={{ paddingTop: topOffset }}
       >
         <div className="w-full max-w-7xl mx-auto px-6 lg:px-8">
           <div className="max-w-[520px] lg:max-w-[600px]">
