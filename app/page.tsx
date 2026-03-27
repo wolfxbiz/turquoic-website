@@ -1,4 +1,7 @@
 // ── app/page.tsx ──
+import { ConsultationModalProvider } from '@/components/landing/ConsultationModalContext'
+import TopBanner from '@/components/landing/layout/TopBanner'
+import FreeConsultationSection from '@/components/landing/sections/FreeConsultationSection'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Hero from '@/components/sections/Hero'
@@ -14,21 +17,25 @@ import Contact from '@/components/sections/Contact'
 import MarqueeStrip from '@/components/ui/MarqueeStrip'
 export default function Home() {
   return (
-    <main>
-      <Navbar />
-      <Hero />
-      <About />
-      <MarqueeStrip />
-      <Services />
-      <Industries />
-      <MarqueeStrip reversed />
-      <CapabilityProgramme />
-      <Process />
-      <Testimonials />
-      <Team />
-      <RougeStars />
-      <Contact />
-      <Footer />
-    </main>
+    <ConsultationModalProvider>
+      <TopBanner />
+      <main>
+        <Navbar />
+        <Hero />
+        <About />
+        <MarqueeStrip />
+        <Services />
+        <Industries />
+        <MarqueeStrip reversed />
+        <CapabilityProgramme />
+        <Process />
+        <Testimonials />
+        <Team />
+        <RougeStars />
+        <FreeConsultationSection />
+        <Contact />
+        <Footer />
+      </main>
+    </ConsultationModalProvider>
   )
 }

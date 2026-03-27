@@ -6,10 +6,13 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { NAV_LINKS, SITE_NAME } from '@/lib/constants'
 import Button from '@/components/ui/Button'
+import { useConsultationModal } from '@/components/landing/ConsultationModalContext'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const { open, bannerVisible } = useConsultationModal()
+  const topOffset = bannerVisible ? 'top-10' : 'top-0'
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60)
@@ -28,7 +31,7 @@ export default function Navbar() {
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed ${topOffset} left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
             ? 'bg-white/90 backdrop-blur-md border-b border-teal-mid/30 shadow-sm'
             : 'bg-transparent'
@@ -66,9 +69,9 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Desktop CTA — lime on dark hero, lime on white scrolled */}
+          {/* Desktop CTA */}
           <div className="hidden md:block">
-            <Button variant="primary" href="#contact">
+            <Button variant="primary" onClick={open}>
               Get Started
             </Button>
           </div>
@@ -131,7 +134,7 @@ export default function Navbar() {
               transition={{ delay: 0.35 }}
               className="px-6 mt-auto mb-12"
             >
-              <Button variant="primary" href="#contact" fullWidth onClick={() => setMobileOpen(false)}>
+              <Button variant="primary" fullWidth onClick={() => { setMobileOpen(false); open() }}>
                 Get Started
               </Button>
             </motion.div>

@@ -13,7 +13,7 @@ const SOLUTIONS = [
     description:
       'Before a single line of code is written, you get a detailed brief, wireframes, and technical spec — all approved by you. What you describe is exactly what we build.',
     result: 'Zero surprise deliveries.',
-    image: '/images/capability-team.png',
+    image: '/assets/images/solution-01.png',
     imagePos: 'object-center',
     icon: FileSearch,
     accent: 'teal' as const,
@@ -25,7 +25,7 @@ const SOLUTIONS = [
     description:
       'We commit to delivery dates and stick to them. You get weekly progress updates, a shared project board, and a direct line to your developer — no radio silence, ever.',
     result: 'Always know where things stand.',
-    image: '/images/industry-finance.png',
+    image: '/assets/images/solution-02.png',
     imagePos: 'object-center',
     icon: CalendarCheck,
     accent: 'dark' as const,
@@ -37,18 +37,13 @@ const SOLUTIONS = [
     description:
       'We write clean, tested, documented code built for real traffic. Your product handles growth, and your next developer will thank you for the codebase we leave behind.',
     result: 'Built to scale from the start.',
-    image: '/images/industry-ecommerce.png', // cspell:disable-line
-    imagePos: 'object-top',
+    image: '/assets/images/solution-03.png',
+    imagePos: 'object-center',
     icon: Rocket,
     accent: 'lime' as const,
   },
 ]
 
-const overlayMap = {
-  teal: 'from-teal-accent/80 to-[#0B1E1D]/60',
-  dark: 'from-[#0B1E1D]/85 to-teal-accent/40',
-  lime: 'from-[#0B1E1D]/80 to-teal-accent/50',
-}
 
 const iconBgMap = {
   teal: 'bg-teal-strong/20 border-teal-strong/40 text-teal-strong',
@@ -121,23 +116,21 @@ export default function SolutionSection() {
                     className={`object-cover group-hover:scale-105 transition-transform duration-700 ${sol.imagePos}`}
                     sizes="(max-width: 1024px) 100vw, 45vw"
                   />
-                  {/* Gradient overlay */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${overlayMap[sol.accent]}`} />
-
-                  {/* Number + Icon */}
-                  <div className="absolute inset-0 p-6 lg:p-8 flex flex-col justify-between">
-                    <span className="font-display font-black text-[56px] lg:text-[72px] leading-none
-                                     text-white/10 select-none">
+                  {/* Top row: number (left) + icon (right) */}
+                  <div className="absolute top-5 left-5 lg:top-6 lg:left-6">
+                    <span className="font-display font-black text-[48px] lg:text-[60px] leading-none
+                                     text-white/20 select-none drop-shadow-sm">
                       {sol.number}
                     </span>
-                    <div className={`w-12 h-12 rounded-2xl border backdrop-blur-sm
-                                     flex items-center justify-center ${iconBgMap[sol.accent]}`}>
-                      <Icon className="w-5 h-5" />
-                    </div>
+                  </div>
+                  <div className={`absolute top-5 right-5 lg:top-6 lg:right-6
+                                   w-11 h-11 rounded-2xl border backdrop-blur-sm
+                                   flex items-center justify-center ${iconBgMap[sol.accent]}`}>
+                    <Icon className="w-5 h-5" />
                   </div>
 
-                  {/* Problem tag — bottom of image */}
-                  <div className="absolute bottom-5 left-6 lg:left-8 right-6 lg:right-8">
+                  {/* Problem tag — bottom, well separated from icon */}
+                  <div className="absolute bottom-5 left-5 lg:bottom-6 lg:left-6">
                     <span className={`inline-flex items-center gap-1.5 text-[10px] font-body font-bold
                                       uppercase tracking-[0.14em] px-3 py-1.5 rounded-full
                                       backdrop-blur-sm ${tagMap[sol.accent]}`}>

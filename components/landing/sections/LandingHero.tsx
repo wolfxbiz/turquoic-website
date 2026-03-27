@@ -57,7 +57,7 @@ export default function LandingHero() {
       {/* Mobile hero image — ON TOP, right after navbar */}
       <div className="md:hidden relative w-full overflow-hidden" style={{ paddingTop: mobileTop }}>
         <Image
-          src="/assets/images/landing-hero.png"
+          src="/assets/images/web-cover.png"
           alt="Turquoic — AI-powered web application development"
           width={1200}
           height={675}
@@ -265,7 +265,7 @@ export default function LandingHero() {
           transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
         >
           <Image
-            src="/assets/images/landing-hero.png"
+            src="/assets/images/web-cover.png"
             alt="Turquoic — AI-powered web application development"
             width={1200}
             height={675}

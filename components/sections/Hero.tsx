@@ -7,6 +7,7 @@ import Image from 'next/image'
 import Button from '@/components/ui/Button'
 import SectionLabel from '@/components/ui/SectionLabel'
 import { wordReveal, staggerContainer } from '@/lib/animations'
+import { useConsultationModal } from '@/components/landing/ConsultationModalContext'
 
 const headline1 = 'WE AUTOMATE.'
 const headline2a = 'YOU DRIVE'
@@ -29,8 +30,13 @@ const logos = [
 const track = [...logos, ...logos, ...logos]
 
 
+const BANNER_H = 40
+const NAV_H = 64
+
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null)
+  const { open, bannerVisible } = useConsultationModal()
+  const topOffset = NAV_H + (bannerVisible ? BANNER_H : 0)
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -61,7 +67,8 @@ export default function Hero() {
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.55, delay: 0.15, ease: 'easeOut' }}
-        className="md:hidden bg-white px-6 pt-20 pb-6 flex flex-col gap-5"
+        className="md:hidden bg-white px-6 pb-6 flex flex-col gap-5"
+        style={{ paddingTop: topOffset }}
       >
         <SectionLabel showLine={true}>
           AI-POWERED BUSINESS SOLUTIONS
@@ -78,7 +85,7 @@ export default function Hero() {
         </p>
 
         <div className="flex flex-col gap-3 w-full">
-          <Button variant="primary" href="#contact">
+          <Button variant="primary" onClick={open}>
             Let&apos;s Build Together
           </Button>
           <Button variant="secondary" href="#services">
@@ -155,7 +162,8 @@ export default function Hero() {
       {/* Main content — desktop */}
       <motion.div
         style={{ y: contentY }}
-        className="hidden md:flex relative z-10 flex-1 items-center pt-16 lg:pt-20"
+        className="hidden md:flex relative z-10 flex-1 items-center"
+        style={{ paddingTop: topOffset }}
       >
         <div className="w-full max-w-7xl mx-auto px-6 lg:px-8">
           <div className="max-w-[520px] lg:max-w-[600px]">

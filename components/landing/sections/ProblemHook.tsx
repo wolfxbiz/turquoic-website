@@ -5,6 +5,7 @@ import { motion, useInView } from 'framer-motion'
 import { UserX, Clock, Bug, ArrowRight } from 'lucide-react'
 import { staggerContainer, fadeUp } from '@/lib/animations'
 import { LANDING_PAIN_POINTS } from '@/lib/landing-constants'
+import { useConsultationModal } from '@/components/landing/ConsultationModalContext'
 
 const CARD_META = [
   {
@@ -30,6 +31,7 @@ const CARD_META = [
 export default function ProblemHook() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-8% 0px' })
+  const { open } = useConsultationModal()
 
   return (
     <section
@@ -139,9 +141,11 @@ export default function ProblemHook() {
           initial={{ opacity: 0 }} animate={isInView ? { opacity: 1 } : undefined}
           transition={{ delay: 0.9, duration: 0.6 }}>
           <span className="w-12 h-px bg-white/10" />
-          <span className="flex items-center gap-2 font-body font-bold text-[11px] uppercase tracking-[0.18em] text-lime">
+          <button
+            onClick={open}
+            className="flex items-center gap-2 font-body font-bold text-[11px] uppercase tracking-[0.18em] text-lime hover:text-white transition-colors duration-200">
             There is a better way <ArrowRight className="w-3.5 h-3.5" />
-          </span>
+          </button>
           <span className="w-12 h-px bg-white/10" />
         </motion.div>
 
