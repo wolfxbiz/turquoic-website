@@ -315,6 +315,26 @@ export const TEAM_MEMBERS: TeamMember[] = [
     skills: ['Web Development', 'Frontend', 'Creative'],
     social: { linkedin: '#', website: '#' }, // TODO: add real social URLs
   },
+  {
+    id: 'malaika-nasir',
+    name: 'Malaika Nasir',
+    role: 'Developer',
+    image: '/images/team/Malaika Nasir - Developer.png',
+    initials: 'MN',
+    tagline: 'Turning ideas into elegant solutions.',
+    skills: ['Development', 'Frontend', 'Creative'],
+    social: { linkedin: '#', website: '#' }, // TODO: add real social URLs
+  },
+  {
+    id: 'bismitha',
+    name: 'Bismitha',
+    role: 'Developer',
+    image: '/images/team/Bismitha - Developer.png',
+    initials: 'BI',
+    tagline: 'Building clean code that speaks for itself.',
+    skills: ['Development', 'Frontend', 'Creative'],
+    social: { linkedin: '#', website: '#' }, // TODO: add real social URLs
+  },
 ]
 
 export const CAPABILITY_SECTION = {
