@@ -16,6 +16,7 @@ export const TAGLINE = 'Work Smarter. Grow Faster. Live Better.'
 
 export const NAV_LINKS: NavLink[] = [
   { label: 'About', href: '/#about' },
+  { label: 'Solutions', href: '/solutions' },
   { label: 'Services', href: '/services', subLinks: [] },
   { label: 'Blog', href: '/blog' },
   { label: 'Contact', href: '/#contact' },

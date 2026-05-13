@@ -37,7 +37,7 @@ export default function Footer() {
           <div>
             <p className="text-xs font-bold uppercase tracking-widest text-white/30 mb-5">Company</p>
             <ul className="space-y-3">
-              {NAV_LINKS.map((link) => (
+              {NAV_LINKS.filter(l => !l.subLinks).map((link) => (
                 <li key={link.label}>
                   <Link href={link.href} className="text-sm text-white/55 hover:text-white transition-colors">
                     {link.label}
