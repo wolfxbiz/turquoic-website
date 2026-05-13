@@ -37,7 +37,7 @@ export default function About() {
         {/* Desktop: original video */}
         <div className="hidden lg:block relative w-full h-full rounded-card overflow-hidden" style={{ minHeight: 'inherit' }}>
           <video
-            src="/assets/videos/hero-video.mp4"
+            src="/assets/videos/hero-video-mobile.mp4"
             autoPlay
             loop
             muted
