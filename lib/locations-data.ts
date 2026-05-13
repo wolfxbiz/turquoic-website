@@ -13,6 +13,7 @@ export interface LocationData {
   country: string
   city: string
   flag: string
+  flagImage: string
   metaTitle: string
   metaDescription: string
   keywords: string[]
@@ -32,6 +33,7 @@ export const ALL_LOCATIONS: LocationData[] = [
     country: 'UAE',
     city: 'Dubai',
     flag: '🇦🇪',
+    flagImage: '/assets/images/flag-uae.png',
     metaTitle: 'Web Design & Digital Strategy Agency for Dubai | Turquoic',
     metaDescription: 'Turquoic partners with Dubai businesses to build high-performance websites, digital products, and growth strategies. Premium work. Real results.',
     keywords: [
@@ -116,6 +118,7 @@ export const ALL_LOCATIONS: LocationData[] = [
     country: 'United States',
     city: 'United States',
     flag: '🇺🇸',
+    flagImage: '/assets/images/flag-us.png',
     metaTitle: 'Web Design & Digital Strategy Agency for US Businesses | Turquoic',
     metaDescription: 'Turquoic partners with US startups and businesses to build world-class websites, digital products, and growth systems. Premium quality. Measurable results.',
     keywords: [

@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import { Linkedin, Facebook, Instagram, Phone } from 'lucide-react'
+import Image from 'next/image'
+import { Linkedin, Facebook, Instagram } from 'lucide-react'
 import { NAV_LINKS, SITE_NAME, TAGLINE } from '@/lib/constants'
 import { ALL_LOCATIONS } from '@/lib/locations-data'
 
@@ -66,13 +67,21 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <Link href="/" className="text-sm text-white/55 hover:text-white transition-colors flex items-center gap-2">
-                  <span>🇮🇳</span> Trivandrum · Kerala
+                  <Image src="/assets/images/flag-india.png" alt="India" width={20} height={14} className="rounded-sm object-cover" />
+                  Trivandrum · Kerala
                 </Link>
               </li>
               {ALL_LOCATIONS.map((loc) => (
                 <li key={loc.slug}>
                   <Link href={`/locations/${loc.slug}`} className="text-sm text-white/55 hover:text-white transition-colors flex items-center gap-2">
-                    <span>{loc.flag}</span> {loc.city}
+                    <Image
+                      src={loc.flagImage}
+                      alt={loc.country}
+                      width={20}
+                      height={14}
+                      className="rounded-sm object-cover"
+                    />
+                    {loc.city}
                   </Link>
                 </li>
               ))}
