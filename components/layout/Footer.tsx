@@ -93,8 +93,8 @@ export default function Footer() {
             <p className="text-xs font-bold uppercase tracking-widest text-white/30 mb-5">Contact</p>
             <ul className="space-y-3">
               <li>
-                <a href="tel:+918086286885" className="text-sm text-white/55 hover:text-white transition-colors">
-                  +91 8086 286 885
+                <a href="tel:+918086286886" className="text-sm text-white/55 hover:text-white transition-colors">
+                  +91 8086 286 886
                 </a>
               </li>
               <li>

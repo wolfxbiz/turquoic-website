@@ -47,7 +47,7 @@ const localBusinessSchema = {
   url: 'https://www.turquoic.com',
   logo: 'https://www.turquoic.com/og-image.jpg',
   image: 'https://www.turquoic.com/og-image.jpg',
-  telephone: '+918086286885',
+  telephone: '+918086286886',
   priceRange: '$$',
   currenciesAccepted: 'INR',
   paymentAccepted: 'Cash, Credit Card, Bank Transfer, UPI',

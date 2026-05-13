@@ -22,7 +22,7 @@ export default function LocationPage({ location }: Props) {
     name: 'Turquoic',
     description: location.heroDescription,
     url: `https://www.turquoic.com/locations/${location.slug}`,
-    telephone: '+918086286885',
+    telephone: '+918086286886',
     areaServed: [location.country, location.city],
     sameAs: ['https://www.turquoic.com'],
   }
