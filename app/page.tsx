@@ -144,7 +144,7 @@ const localBusinessSchema = {
 
 export default function Home() {
   return (
-    <ConsultationModalProvider>
+    <ConsultationModalProvider hasBanner>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}

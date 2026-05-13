@@ -44,10 +44,14 @@ export default function D2cNavbar() {
           <div className="hidden md:flex items-center gap-8">
             {D2C_NAV_LINKS.map((link) => (
               <a key={link.href} href={link.href} className="relative group">
-                <span className="font-body text-[15px] font-medium uppercase text-dark transition-colors duration-200">
+                <span className={`font-body text-[15px] font-medium uppercase transition-colors duration-200 ${
+                  scrolled ? 'text-dark' : 'text-white'
+                }`}>
                   {link.label}
                 </span>
-                <span className="absolute -bottom-1 left-0 h-[1.5px] w-0 group-hover:w-full transition-all duration-300 bg-teal-strong" />
+                <span className={`absolute -bottom-1 left-0 h-[1.5px] w-0 group-hover:w-full transition-all duration-300 ${
+                  scrolled ? 'bg-teal-strong' : 'bg-white'
+                }`} />
               </a>
             ))}
             <LandingButton onClick={open}>
@@ -56,11 +60,11 @@ export default function D2cNavbar() {
           </div>
 
           <button
-            className="md:hidden p-2 text-dark"
+            className={`md:hidden p-2 transition-colors duration-300 ${scrolled ? 'text-dark' : 'text-white'}`}
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
           >
-            {mobileOpen ? <X className="w-5 h-5 text-white" /> : <Menu className="w-5 h-5" />}
+            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </nav>

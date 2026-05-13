@@ -16,7 +16,7 @@ import D2cFooter from '@/components/d2c/D2cFooter'
 
 export default function D2cGrowthPage() {
   return (
-    <ConsultationModalProvider>
+    <ConsultationModalProvider hasBanner>
       <TopBanner />
       <main>
         <D2cNavbar />

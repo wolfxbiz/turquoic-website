@@ -15,9 +15,15 @@ const Ctx = createContext<ModalCtx>({
   bannerVisible: true, dismissBanner: () => {},
 })
 
-export function ConsultationModalProvider({ children }: { children: React.ReactNode }) {
+export function ConsultationModalProvider({
+  children,
+  hasBanner = false,
+}: {
+  children: React.ReactNode
+  hasBanner?: boolean
+}) {
   const [isOpen, setIsOpen] = useState(false)
-  const [bannerVisible, setBannerVisible] = useState(true)
+  const [bannerVisible, setBannerVisible] = useState(hasBanner)
 
   const open          = useCallback(() => setIsOpen(true),       [])
   const close         = useCallback(() => setIsOpen(false),      [])

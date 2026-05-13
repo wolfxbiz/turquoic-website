@@ -36,9 +36,16 @@ export interface Testimonial {
   avatar?: string
 }
 
+export interface NavSubLink {
+  label: string
+  href: string
+  description?: string
+}
+
 export interface NavLink {
   label: string
   href: string
+  subLinks?: NavSubLink[]
 }
 
 export interface CapabilityHighlight {

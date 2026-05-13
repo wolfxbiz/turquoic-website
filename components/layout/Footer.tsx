@@ -1,4 +1,5 @@
 // ── components/layout/Footer.tsx ──
+import Link from 'next/link'
 import { Linkedin, Facebook, Instagram, Phone } from 'lucide-react'
 import { NAV_LINKS, SITE_NAME, TAGLINE } from '@/lib/constants'
 
@@ -10,18 +11,18 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
         {/* Top row */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-10 border-b border-white/10">
-          <h2 className="font-display font-bold text-4xl lg:text-5xl tracking-tight text-white">
+          <Link href="/" className="font-display font-bold text-4xl lg:text-5xl tracking-tight text-white hover:text-teal-strong transition-colors">
             {SITE_NAME.toUpperCase()}
-          </h2>
+          </Link>
           <nav className="flex flex-wrap gap-6">
             {NAV_LINKS.map((link) => (
-              <a
+              <Link
                 key={link.label}
                 href={link.href}
                 className="font-body text-white/60 hover:text-white transition-colors duration-200 text-sm"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </nav>
         </div>

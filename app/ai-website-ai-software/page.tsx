@@ -18,7 +18,7 @@ import FinalCta from '@/components/landing/sections/FinalCta'
 
 export default function LandingPage() {
   return (
-    <ConsultationModalProvider>
+    <ConsultationModalProvider hasBanner>
       {/* Banner sits above everything — navbar offsets itself when visible */}
       <TopBanner />
       <main>
