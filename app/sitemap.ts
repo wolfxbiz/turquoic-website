@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next'
 import { getAllPosts } from '@/lib/blog'
 import { getAllServiceSlugs } from '@/lib/services-data'
+import { getAllLocationSlugs } from '@/lib/locations-data'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.turquoic.com'
@@ -18,6 +19,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: now,
     changeFrequency: 'monthly',
     priority: 0.85,
+  }))
+
+  const locationEntries: MetadataRoute.Sitemap = getAllLocationSlugs().map((slug) => ({
+    url: `${baseUrl}/locations/${slug}`,
+    lastModified: now,
+    changeFrequency: 'monthly',
+    priority: 0.8,
   }))
 
   return [
@@ -52,6 +60,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     },
     ...serviceEntries,
+    ...locationEntries,
     ...blogEntries,
   ]
 }
