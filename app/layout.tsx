@@ -74,6 +74,36 @@ export const metadata: Metadata = {
   },
 }
 
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': 'https://www.turquoic.com/#organization',
+  name: 'Turquoic',
+  url: 'https://www.turquoic.com',
+  logo: {
+    '@type': 'ImageObject',
+    url: 'https://www.turquoic.com/og-image.jpg',
+    width: 1200,
+    height: 630,
+  },
+  image: 'https://www.turquoic.com/og-image.jpg',
+  telephone: '+918086286886',
+  email: 'hello@turquoic.com',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'L:116, LIC E Ln, Lekshmi Nagar, Pattom',
+    addressLocality: 'Trivandrum',
+    addressRegion: 'Kerala',
+    postalCode: '695004',
+    addressCountry: 'IN',
+  },
+  sameAs: [
+    'https://www.linkedin.com/company/turquoic/',
+    'https://www.facebook.com/share/14XSNLn6K3p/',
+    'https://www.instagram.com/turquoic',
+  ],
+}
+
 const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
@@ -99,6 +129,10 @@ export default function RootLayout({
   return (
     <html lang="en-IN">
       <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
