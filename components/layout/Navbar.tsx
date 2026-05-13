@@ -1,14 +1,45 @@
-// ── components/layout/Navbar.tsx ──
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, ChevronDown } from 'lucide-react'
+import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react'
 import { NAV_LINKS, SITE_NAME } from '@/lib/constants'
+import { ALL_SERVICES } from '@/lib/services-data'
 import Button from '@/components/ui/Button'
 import { useConsultationModal } from '@/components/landing/ConsultationModalContext'
+
+const MEGA_CATEGORIES = [
+  {
+    key: 'development' as const,
+    label: 'Development',
+    icon: '⚡',
+    color: 'text-teal-600',
+    bar: 'bg-teal-400',
+  },
+  {
+    key: 'marketing' as const,
+    label: 'Marketing & SEO',
+    icon: '📈',
+    color: 'text-purple-600',
+    bar: 'bg-purple-400',
+  },
+  {
+    key: 'design' as const,
+    label: 'Design',
+    icon: '🎨',
+    color: 'text-orange-600',
+    bar: 'bg-orange-400',
+  },
+  {
+    key: 'ai' as const,
+    label: 'AI & Software',
+    icon: '🤖',
+    color: 'text-blue-600',
+    bar: 'bg-blue-400',
+  },
+]
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -33,7 +64,6 @@ export default function Navbar() {
     return () => { document.body.style.overflow = '' }
   }, [mobileOpen])
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
@@ -44,7 +74,6 @@ export default function Navbar() {
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [])
 
-  // Resolve href: hash-only links become /#hash when not on homepage
   function resolveHref(href: string) {
     if (href.startsWith('/#')) return href
     return href
@@ -90,7 +119,9 @@ export default function Navbar() {
                   <div key={link.label} className="relative" ref={dropdownRef}>
                     <button
                       onClick={() => setDesktopDropdownOpen((p) => !p)}
-                      className={`relative font-body text-[15px] font-medium flex items-center gap-1 pb-0.5 transition-colors duration-300 ${textColor}`}
+                      className={`relative font-body text-[15px] font-medium flex items-center gap-1 pb-0.5 transition-colors duration-300 ${
+                        isActive('/services') ? 'text-teal-strong' : textColor
+                      }`}
                     >
                       {link.label.toUpperCase()}
                       <ChevronDown
@@ -102,33 +133,88 @@ export default function Navbar() {
                     <AnimatePresence>
                       {desktopDropdownOpen && (
                         <motion.div
-                          initial={{ opacity: 0, y: 8 }}
+                          initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: 8 }}
-                          transition={{ duration: 0.18 }}
-                          className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-64 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 overflow-hidden"
+                          exit={{ opacity: 0, y: 10 }}
+                          transition={{ duration: 0.2 }}
+                          className="fixed left-0 right-0 mt-3 z-50"
+                          style={{ top: bannerVisible ? '104px' : '64px' }}
                         >
-                          {link.subLinks.map((sub) => (
-                            <Link
-                              key={sub.href}
-                              href={sub.href}
-                              onClick={() => setDesktopDropdownOpen(false)}
-                              className={`block px-4 py-3 hover:bg-teal-50 transition-colors group ${
-                                isActive(sub.href) ? 'bg-teal-50' : ''
-                              }`}
-                            >
-                              <span className={`block text-sm font-semibold group-hover:text-teal-700 transition-colors ${
-                                isActive(sub.href) ? 'text-teal-700' : 'text-gray-900'
-                              }`}>
-                                {sub.label}
-                              </span>
-                              {sub.description && (
-                                <span className="block text-xs text-gray-500 mt-0.5 leading-snug">
-                                  {sub.description}
-                                </span>
-                              )}
-                            </Link>
-                          ))}
+                          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                            <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden">
+
+                              {/* Mega menu header */}
+                              <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 bg-gray-50/50">
+                                <div>
+                                  <p className="font-bold text-gray-900 text-sm">All Services</p>
+                                  <p className="text-xs text-gray-400 mt-0.5">25 services across 4 categories</p>
+                                </div>
+                                <Link
+                                  href="/services"
+                                  onClick={() => setDesktopDropdownOpen(false)}
+                                  className="flex items-center gap-1.5 text-xs font-semibold text-teal-600 hover:text-teal-700 transition-colors"
+                                >
+                                  View all services <ArrowRight size={12} />
+                                </Link>
+                              </div>
+
+                              {/* 4-column category grid */}
+                              <div className="grid grid-cols-4 divide-x divide-gray-100">
+                                {MEGA_CATEGORIES.map((cat) => {
+                                  const services = ALL_SERVICES.filter(s => s.category === cat.key)
+                                  return (
+                                    <div key={cat.key} className="p-5">
+                                      {/* Category heading */}
+                                      <div className="flex items-center gap-2 mb-3">
+                                        <span className="text-base leading-none">{cat.icon}</span>
+                                        <span className={`text-xs font-bold uppercase tracking-widest ${cat.color}`}>
+                                          {cat.label}
+                                        </span>
+                                      </div>
+                                      <div className={`w-8 h-px ${cat.bar} mb-4`} />
+
+                                      {/* Service links */}
+                                      <ul className="space-y-1">
+                                        {services.map(service => (
+                                          <li key={service.slug}>
+                                            <Link
+                                              href={`/services/${service.slug}`}
+                                              onClick={() => setDesktopDropdownOpen(false)}
+                                              className={`block text-sm py-1.5 px-2 rounded-lg transition-colors group ${
+                                                isActive(`/services/${service.slug}`)
+                                                  ? 'bg-teal-50 text-teal-700 font-semibold'
+                                                  : 'text-gray-700 hover:bg-gray-50 hover:text-teal-700'
+                                              }`}
+                                            >
+                                              {service.title}
+                                            </Link>
+                                          </li>
+                                        ))}
+                                      </ul>
+                                    </div>
+                                  )
+                                })}
+                              </div>
+
+                              {/* Bottom CTA strip */}
+                              <div
+                                className="px-6 py-4 flex items-center justify-between"
+                                style={{ background: 'linear-gradient(135deg, #091918 0%, #0d2a28 100%)' }}
+                              >
+                                <div>
+                                  <p className="text-white text-sm font-semibold">Not sure where to start?</p>
+                                  <p className="text-white/50 text-xs mt-0.5">Free consultation — no commitment</p>
+                                </div>
+                                <button
+                                  onClick={() => { setDesktopDropdownOpen(false); open() }}
+                                  className="flex items-center gap-2 bg-lime text-olive font-bold text-xs uppercase tracking-wide px-5 py-2.5 rounded-xl hover:shadow-[0_0_20px_rgba(200,230,0,0.3)] transition-all"
+                                >
+                                  Book Free Consultation <ArrowRight size={12} />
+                                </button>
+                              </div>
+
+                            </div>
+                          </div>
                         </motion.div>
                       )}
                     </AnimatePresence>
@@ -181,9 +267,10 @@ export default function Navbar() {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            className="fixed inset-0 z-[100] bg-gradient-hero flex flex-col"
+            className="fixed inset-0 z-[100] flex flex-col overflow-y-auto"
+            style={{ background: 'linear-gradient(160deg, #091918 0%, #0B1E1D 50%, #0D2A28 100%)' }}
           >
-            <div className="flex items-center justify-between px-6 h-16">
+            <div className="flex items-center justify-between px-6 h-16 shrink-0">
               <span className="font-display font-bold text-[22px] text-white">
                 {SITE_NAME.toUpperCase()}
               </span>
@@ -196,7 +283,7 @@ export default function Navbar() {
               </button>
             </div>
 
-            <div className="flex flex-col gap-1 px-6 pt-8 overflow-y-auto">
+            <div className="flex flex-col gap-1 px-6 pt-4 pb-8">
               {NAV_LINKS.map((link, i) => {
                 if (link.subLinks) {
                   return (
@@ -206,11 +293,11 @@ export default function Navbar() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: i * 0.07, duration: 0.3 }}
                         onClick={() => setMobileServicesOpen((p) => !p)}
-                        className="w-full flex items-center justify-between font-display font-bold text-3xl text-white py-2 border-b border-white/30"
+                        className="w-full flex items-center justify-between font-display font-bold text-2xl text-white py-3 border-b border-white/10"
                       >
                         {link.label.toUpperCase()}
                         <ChevronDown
-                          size={20}
+                          size={18}
                           className={`transition-transform duration-200 ${mobileServicesOpen ? 'rotate-180' : ''}`}
                         />
                       </motion.button>
@@ -221,19 +308,43 @@ export default function Navbar() {
                             initial={{ height: 0, opacity: 0 }}
                             animate={{ height: 'auto', opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.2 }}
+                            transition={{ duration: 0.25 }}
                             className="overflow-hidden"
                           >
-                            {link.subLinks.map((sub) => (
+                            <div className="pt-3 pb-2 space-y-5">
+                              {MEGA_CATEGORIES.map(cat => {
+                                const services = ALL_SERVICES.filter(s => s.category === cat.key)
+                                return (
+                                  <div key={cat.key}>
+                                    <div className="flex items-center gap-2 px-2 mb-2">
+                                      <span className="text-sm">{cat.icon}</span>
+                                      <span className={`text-[11px] font-bold uppercase tracking-widest ${cat.color}`}>
+                                        {cat.label}
+                                      </span>
+                                    </div>
+                                    <div className="grid grid-cols-2 gap-1">
+                                      {services.map(service => (
+                                        <Link
+                                          key={service.slug}
+                                          href={`/services/${service.slug}`}
+                                          onClick={() => setMobileOpen(false)}
+                                          className="block px-2 py-2 text-white/70 hover:text-white text-sm font-medium transition-colors leading-snug"
+                                        >
+                                          {service.title}
+                                        </Link>
+                                      ))}
+                                    </div>
+                                  </div>
+                                )
+                              })}
                               <Link
-                                key={sub.href}
-                                href={sub.href}
+                                href="/services"
                                 onClick={() => setMobileOpen(false)}
-                                className="block pl-4 py-2.5 border-b border-white/10 text-white/80 hover:text-white font-body font-semibold text-lg transition-colors"
+                                className="flex items-center gap-2 mt-2 px-2 text-teal-400 font-semibold text-sm"
                               >
-                                {sub.label}
+                                View all services <ArrowRight size={14} />
                               </Link>
-                            ))}
+                            </div>
                           </motion.div>
                         )}
                       </AnimatePresence>
@@ -251,7 +362,7 @@ export default function Navbar() {
                     <Link
                       href={resolveHref(link.href)}
                       onClick={() => setMobileOpen(false)}
-                      className="block font-display font-bold text-3xl text-white py-2 border-b border-white/30"
+                      className="block font-display font-bold text-2xl text-white py-3 border-b border-white/10"
                     >
                       {link.label.toUpperCase()}
                     </Link>
@@ -264,7 +375,7 @@ export default function Navbar() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.35 }}
-              className="px-6 mt-auto mb-12"
+              className="px-6 mt-auto mb-12 shrink-0"
             >
               <Button variant="primary" fullWidth onClick={() => { setMobileOpen(false); open() }}>
                 Get Started

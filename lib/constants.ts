@@ -16,32 +16,7 @@ export const TAGLINE = 'Work Smarter. Grow Faster. Live Better.'
 
 export const NAV_LINKS: NavLink[] = [
   { label: 'About', href: '/#about' },
-  {
-    label: 'Services',
-    href: '/services',
-    subLinks: [
-      {
-        label: 'All Services',
-        href: '/services',
-        description: 'Browse all 25 services we offer',
-      },
-      {
-        label: 'Website Development',
-        href: '/services/website-development',
-        description: 'Custom websites for businesses in Trivandrum & Kerala',
-      },
-      {
-        label: 'AI Website & Software',
-        href: '/ai-website-ai-software',
-        description: 'AI-powered web apps, SaaS, and digital products',
-      },
-      {
-        label: 'D2C Growth',
-        href: '/d2c-growth',
-        description: 'Ecommerce growth for Indian D2C brands',
-      },
-    ],
-  },
+  { label: 'Services', href: '/services', subLinks: [] },
   { label: 'Blog', href: '/blog' },
   { label: 'Contact', href: '/#contact' },
 ]
