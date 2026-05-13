@@ -18,8 +18,13 @@ export const NAV_LINKS: NavLink[] = [
   { label: 'About', href: '/#about' },
   {
     label: 'Services',
-    href: '/#services',
+    href: '/services',
     subLinks: [
+      {
+        label: 'All Services',
+        href: '/services',
+        description: 'Browse all 25 services we offer',
+      },
       {
         label: 'Website Development',
         href: '/services/website-development',

@@ -2,7 +2,7 @@ import { ConsultationModalProvider } from '@/components/landing/ConsultationModa
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 
-export default function ServiceLayout({ children }: { children: React.ReactNode }) {
+export default function ServicesLayout({ children }: { children: React.ReactNode }) {
   return (
     <ConsultationModalProvider>
       <Navbar />
