@@ -4,34 +4,90 @@ import './globals.css'
 import WhatsAppFloat from '@/components/ui/WhatsAppFloat'
 
 export const metadata: Metadata = {
-  title: 'Turquoic — AI-Powered Business Solutions',
+  metadataBase: new URL('https://www.turquoic.com'),
+  title: {
+    default: 'Best Website Development Company in Trivandrum | Turquoic',
+    template: '%s | Turquoic',
+  },
   description:
-    'Work Smarter. Grow Faster. Live Better. Turquoic delivers intelligent AI automation, lead generation, and custom IT solutions for professionals who are serious about their time.',
+    'Turquoic is a leading website development company in Trivandrum, Kerala. We build high-performance websites, ecommerce stores, AI-powered web apps, and deliver full-scale digital marketing for businesses across India.',
   keywords: [
-    'AI automation',
-    'business solutions',
-    'lead generation',
-    'process automation',
-    'revenue growth',
-    'IT solutions',
+    'website development company in Trivandrum',
+    'website company in Trivandrum',
+    'web design company Trivandrum',
+    'best website development companies in Trivandrum',
+    'website companies in Trivandrum',
+    'web development agency Kerala',
+    'website design Trivandrum',
+    'web development company Kerala',
+    'IT company Trivandrum',
+    'digital marketing Trivandrum',
+    'ecommerce website development Kerala',
+    'SEO company Trivandrum',
+    'software company Trivandrum',
+    'Turquoic',
   ],
+  alternates: {
+    canonical: 'https://www.turquoic.com',
+  },
   icons: {
     icon: '/favicon.png',
     shortcut: '/favicon.png',
     apple: '/favicon.png',
   },
   openGraph: {
-    title: 'Turquoic — AI-Powered Business Solutions',
-    description: 'Work Smarter. Grow Faster. Live Better.',
+    title: 'Best Website Development Company in Trivandrum | Turquoic',
+    description:
+      'Turquoic builds high-performance websites, ecommerce stores, and AI-powered web apps for businesses in Trivandrum & Kerala. Get a free consultation today.',
     type: 'website',
     url: 'https://www.turquoic.com',
-    images: [{ url: 'https://www.turquoic.com/og-image.jpg', secureUrl: 'https://www.turquoic.com/og-image.jpg', width: 1200, height: 630, alt: 'Turquoic', type: 'image/jpeg' }],
+    siteName: 'Turquoic',
+    locale: 'en_IN',
+    images: [
+      {
+        url: 'https://www.turquoic.com/og-image.jpg',
+        secureUrl: 'https://www.turquoic.com/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Turquoic — Best Website Development Company in Trivandrum',
+        type: 'image/jpeg',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Turquoic — AI-Powered Business Solutions',
-    description: 'Work Smarter. Grow Faster. Live Better.',
+    title: 'Best Website Development Company in Trivandrum | Turquoic',
+    description:
+      'High-performance websites, ecommerce stores & AI web apps for businesses in Trivandrum, Kerala.',
     images: ['https://www.turquoic.com/og-image.jpg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-snippet': -1,
+      'max-image-preview': 'large',
+      'max-video-preview': -1,
+    },
+  },
+}
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': 'https://www.turquoic.com/#website',
+  url: 'https://www.turquoic.com',
+  name: 'Turquoic',
+  description: 'Best Website Development Company in Trivandrum, Kerala',
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: {
+      '@type': 'EntryPoint',
+      urlTemplate: 'https://www.turquoic.com/?s={search_term_string}',
+    },
+    'query-input': 'required name=search_term_string',
   },
 }
 
@@ -41,7 +97,13 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en-IN">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+      </head>
       <body>
         {children}
         <WhatsAppFloat />
