@@ -1,43 +1,27 @@
-export interface LocationStat {
-  label: string
-  value: string
-}
-
 export interface LocationFaq {
   q: string
   a: string
 }
 
-export interface LocationService {
+export interface LocationCapability {
   title: string
-  slug: string
-  localPrice: string
-  turquoicPrice: string
+  description: string
 }
 
 export interface LocationData {
   slug: string
   country: string
   city: string
-  region: string
   flag: string
-  currency: string
   metaTitle: string
   metaDescription: string
   keywords: string[]
   heroHeadline: string
-  heroSubheadline: string
   heroDescription: string
-  painPoint: string
-  painPointDescription: string
-  timezoneNote: string
-  timezoneDetail: string
-  savingsHeadline: string
-  savingsDescription: string
-  services: LocationService[]
+  intro: string
+  capabilities: LocationCapability[]
   whyUs: string[]
   faqs: LocationFaq[]
-  stats: LocationStat[]
   ctaHeadline: string
   ctaDescription: string
 }
@@ -47,124 +31,168 @@ export const ALL_LOCATIONS: LocationData[] = [
     slug: 'dubai',
     country: 'UAE',
     city: 'Dubai',
-    region: 'Middle East',
     flag: '🇦🇪',
-    currency: 'AED',
-    metaTitle: 'Web Design & Development Agency for Dubai Businesses | Turquoic India',
-    metaDescription: 'Turquoic is a top-rated Indian web design agency serving Dubai and UAE businesses. Save 60–70% vs local Dubai agencies. Same quality, faster delivery, 1.5hr timezone gap.',
+    metaTitle: 'Web Design & Digital Strategy Agency for Dubai | Turquoic',
+    metaDescription: 'Turquoic partners with Dubai businesses to build high-performance websites, digital products, and growth strategies. Premium work. Real results.',
     keywords: [
-      'web design agency for dubai businesses',
-      'web development company india dubai',
-      'affordable website design dubai',
-      'outsource web development dubai india',
-      'best web design company for uae clients',
-      'website development india for dubai',
-      'digital marketing agency india dubai',
-      'seo services india for uae businesses',
+      'web design agency dubai',
+      'digital agency for dubai businesses',
+      'website development dubai',
+      'digital marketing agency dubai',
+      'seo agency dubai',
+      'web development company dubai',
+      'branding agency dubai',
+      'ecommerce development dubai',
     ],
-    heroHeadline: 'World-Class Web Design for Dubai Businesses',
-    heroSubheadline: 'Indian quality. Dubai results. 60% less cost.',
-    heroDescription: 'Turquoic is a Trivandrum-based web design and digital marketing agency serving businesses across Dubai and the UAE. We build high-performance websites, run SEO campaigns, and deliver digital products — at a fraction of what local Dubai agencies charge.',
-    painPoint: 'Dubai Agencies Are Expensive',
-    painPointDescription: 'A standard business website from a Dubai or Abu Dhabi agency costs AED 15,000–50,000+. The same quality work — often by the same offshore talent — costs significantly less when you hire an Indian agency directly. The middleman markup is real.',
-    timezoneNote: 'Only 1.5 Hours Apart',
-    timezoneDetail: 'India Standard Time (IST) and UAE Standard Time (GST) are only 1 hour 30 minutes apart. Morning standups, afternoon reviews, same-day revisions — working with Turquoic feels like working with a local team.',
-    savingsHeadline: 'Same Quality. 60% Less Cost.',
-    savingsDescription: 'Dubai businesses that outsource web development to India typically save 60–70% on project costs without compromising quality. Our team uses the same technology stack, design tools, and project management processes as top Dubai agencies.',
-    services: [
-      { title: 'Business Website', slug: 'website-development', localPrice: 'AED 15,000–35,000', turquoicPrice: 'AED 5,000–12,000' },
-      { title: 'Ecommerce Store', slug: 'ecommerce-development', localPrice: 'AED 25,000–60,000', turquoicPrice: 'AED 8,000–20,000' },
-      { title: 'SEO (6 months)', slug: 'seo-services', localPrice: 'AED 10,000–25,000', turquoicPrice: 'AED 3,500–9,000' },
-      { title: 'Logo & Branding', slug: 'logo-branding-design', localPrice: 'AED 5,000–15,000', turquoicPrice: 'AED 1,500–5,000' },
-      { title: 'Google Ads', slug: 'google-ads-management', localPrice: 'AED 3,000–8,000/mo', turquoicPrice: 'AED 1,000–3,000/mo' },
-      { title: 'UI/UX Design', slug: 'ui-ux-design', localPrice: 'AED 12,000–30,000', turquoicPrice: 'AED 4,000–10,000' },
+    heroHeadline: 'Built for Dubai.\nDelivered with Precision.',
+    heroDescription: 'Turquoic partners with businesses across Dubai and the UAE to build digital products that perform — websites, ecommerce platforms, SEO campaigns, and brand identities crafted to the highest standard.',
+    intro: 'Dubai businesses operate in one of the world\'s most competitive markets. Your digital presence needs to match the ambition of the city. We build for that standard — fast, premium, and built to convert.',
+    capabilities: [
+      {
+        title: 'Premium Website Development',
+        description: 'Custom-built websites designed for performance, brand, and conversion. Every project starts with strategy — not templates.',
+      },
+      {
+        title: 'Ecommerce & D2C Platforms',
+        description: 'Shopify and custom storefronts engineered to sell. Mobile-first, fast-loading, and optimised for the UAE consumer.',
+      },
+      {
+        title: 'SEO & Digital Growth',
+        description: 'Organic search strategies built for the Dubai and UAE market. Long-term visibility for the keywords your customers actually search.',
+      },
+      {
+        title: 'Brand Identity & Design',
+        description: 'Visual identity systems that position your business as a premium player in the UAE market — logo, brand guidelines, and digital assets.',
+      },
+      {
+        title: 'Google & Meta Ads',
+        description: 'Performance advertising managed by specialists. ROI-focused campaigns targeting Dubai audiences with precision.',
+      },
+      {
+        title: 'Bilingual Digital Experiences',
+        description: 'English and Arabic websites with proper RTL layout, localised UX, and content strategy for both audiences.',
+      },
     ],
     whyUs: [
-      'Direct communication — no account manager relay, you talk to the designers and developers',
-      'Only 1.5-hour timezone difference — real-time collaboration during your business day',
-      'English-first team — all briefs, calls, and deliverables in fluent English',
-      'Indian IT industry quality — same talent pool as the agencies Dubai companies already outsource to',
-      'Fixed-price contracts — no surprise invoices or scope creep charges',
-      'WhatsApp, Zoom, or email — we work the way you work',
+      'We work with a small number of clients at a time — your project gets full attention, not a junior team',
+      'Direct communication with the designers and developers building your product — no account manager layer',
+      'Every project is strategically driven — we understand your business goals before writing a single line of code',
+      'We build for scale — the websites and systems we deliver grow with your business',
+      'Seamless async and live collaboration — we make timezone work in your favour',
+      'We take ownership of results — not just deliverables',
     ],
     faqs: [
-      { q: 'How do I communicate with a team based in India from Dubai?', a: 'We use Zoom, Google Meet, WhatsApp, and email. With only 1.5 hours between IST and UAE time, we can easily schedule morning or afternoon calls that suit your Dubai workday. Most clients find communication smoother than with local agencies.' },
-      { q: 'How do payments work for Dubai clients?', a: 'We accept international bank transfers (SWIFT), Wise, and PayPal. All pricing is quoted in USD or AED based on your preference. A 50% advance and 50% on delivery is our standard payment schedule.' },
-      { q: 'Can you build a website in Arabic?', a: 'Yes — we build bilingual (English + Arabic) websites with proper RTL (right-to-left) layout support. We work with your Arabic content or can recommend translation partners.' },
-      { q: 'How long does a project take from Dubai?', a: 'Project timelines are the same regardless of location. A business website takes 7–14 working days. Ecommerce stores take 3–5 weeks. The remote nature does not slow things down — we use staging links and loom videos for reviews.' },
-      { q: 'Do you understand the Dubai market and audience?', a: 'Yes. We have worked with UAE-based businesses and understand the Dubai consumer — bilingual content, WhatsApp-first communication, trust signals relevant to the Middle East market, and local SEO for Google UAE.' },
-      { q: 'What happens if I am not happy with the work?', a: 'We offer unlimited revisions within the agreed scope until you are satisfied. Our contracts protect both parties clearly. We have a 100% client satisfaction record across all international projects.' },
+      {
+        q: 'How do you work with Dubai-based clients remotely?',
+        a: 'We use Zoom, Google Meet, and async tools like Loom and Notion. Kick-off calls, weekly reviews, and design walkthroughs all happen live. The process is structured so you always know what\'s happening and what\'s next — with no delays.',
+      },
+      {
+        q: 'Can you build bilingual Arabic and English websites?',
+        a: 'Yes. We design and develop bilingual websites with full RTL Arabic support, localised UX patterns, and proper font handling. We work with your Arabic content team or can recommend certified translators.',
+      },
+      {
+        q: 'Do you understand the Dubai market and consumer behaviour?',
+        a: 'We have worked with UAE-based businesses and research every market we enter. We understand UAE consumer preferences, Arabic digital behaviour, local SEO for Google UAE, and what converts in the Dubai context specifically.',
+      },
+      {
+        q: 'How are payments and contracts handled?',
+        a: 'All contracts are in English, clearly scoped, and milestone-based. We accept international bank transfers and Wise. You own 100% of everything we build — code, designs, and assets are fully transferred on project completion.',
+      },
+      {
+        q: 'What does a typical project timeline look like?',
+        a: 'A business website takes 2–4 weeks. Ecommerce platforms take 4–8 weeks. Brand identity projects run 2–3 weeks. Every project begins with a discovery phase where we scope, plan, and agree on milestones before any work begins.',
+      },
+      {
+        q: 'Do you offer ongoing partnership after launch?',
+        a: 'Yes. Most of our Dubai clients work with us on a monthly retainer basis — covering SEO, paid advertising, performance monitoring, and continuous development. We function as a dedicated digital partner, not a one-time vendor.',
+      },
     ],
-    stats: [
-      { value: '60–70%', label: 'Cost savings vs Dubai agencies' },
-      { value: '1.5 hrs', label: 'Timezone difference (IST–GST)' },
-      { value: '7–14 days', label: 'Business website delivery' },
-      { value: '100%', label: 'English-first communication' },
-    ],
-    ctaHeadline: 'Ready to work with an Indian agency that delivers?',
-    ctaDescription: 'Free consultation call. We will show you our portfolio, answer your questions, and give you a fixed-price quote — no pressure, no commitment.',
+    ctaHeadline: 'Let\'s build something exceptional together.',
+    ctaDescription: 'Tell us about your project. We\'ll come back with a clear plan, timeline, and proposal — no fluff.',
   },
 
   {
     slug: 'usa',
-    country: 'USA',
+    country: 'United States',
     city: 'United States',
-    region: 'North America',
     flag: '🇺🇸',
-    currency: 'USD',
-    metaTitle: 'Web Design & Development Agency for US Businesses | Turquoic India',
-    metaDescription: 'Turquoic is a top-rated Indian web agency serving US businesses and startups. Save 60–70% vs American agencies. Modern tech stack, English-first team, async-friendly workflow.',
+    metaTitle: 'Web Design & Digital Strategy Agency for US Businesses | Turquoic',
+    metaDescription: 'Turquoic partners with US startups and businesses to build world-class websites, digital products, and growth systems. Premium quality. Measurable results.',
     keywords: [
-      'web design agency india for us clients',
-      'offshore web development company india usa',
-      'hire web developer india for us business',
-      'affordable web design usa outsourcing india',
-      'web development outsourcing india',
-      'best indian web design company for us clients',
-      'seo services india for us businesses',
-      'website development company india united states',
+      'web design agency for us businesses',
+      'digital agency united states',
+      'website development company usa',
+      'web development agency us clients',
+      'seo agency for us businesses',
+      'ecommerce development usa',
+      'digital marketing agency us',
+      'ui ux design agency usa',
     ],
-    heroHeadline: 'Top Indian Web Agency for US Businesses',
-    heroSubheadline: 'Silicon Valley quality. India pricing. Async-friendly workflow.',
-    heroDescription: 'Turquoic is an India-based web design and digital marketing agency serving startups, SMBs, and enterprises across the United States. We deliver modern, high-performance digital products — at 60–70% less than US agency rates — without compromising on quality, communication, or timelines.',
-    painPoint: 'US Agency Rates Are Unsustainable',
-    painPointDescription: 'A standard business website from a US agency costs $5,000–$25,000. An ecommerce store starts at $15,000. For startups and growing SMBs, these rates are a barrier. The same work — often done by offshore teams anyway — costs significantly less when you hire the source directly.',
-    timezoneNote: 'Async-Optimised Workflow',
-    timezoneDetail: 'We are IST-based, which means our workday overlaps with your US evening — your brief arrives overnight, and the work is ready when you wake up. For real-time calls, we offer early morning IST slots (7–9 AM IST = 8:30 PM–10:30 PM ET the previous day) and late afternoon overlaps.',
-    savingsHeadline: 'Same Stack. 60% Less Cost.',
-    savingsDescription: 'US companies outsourcing to India is not new — it is how most large US tech companies operate. The difference is you are hiring us directly, not through a staffing layer. We use React, Next.js, TypeScript, Tailwind, Shopify, WordPress — the exact same tools your US agency would use.',
-    services: [
-      { title: 'Business Website', slug: 'website-development', localPrice: '$5,000–$15,000', turquoicPrice: '$1,500–$5,000' },
-      { title: 'Ecommerce Store', slug: 'ecommerce-development', localPrice: '$15,000–$50,000', turquoicPrice: '$4,000–$15,000' },
-      { title: 'SEO (6 months)', slug: 'seo-services', localPrice: '$6,000–$18,000', turquoicPrice: '$2,000–$6,000' },
-      { title: 'Logo & Branding', slug: 'logo-branding-design', localPrice: '$3,000–$10,000', turquoicPrice: '$800–$3,000' },
-      { title: 'Google Ads Mgmt', slug: 'google-ads-management', localPrice: '$1,500–$5,000/mo', turquoicPrice: '$500–$1,800/mo' },
-      { title: 'Web Application', slug: 'web-application-development', localPrice: '$25,000–$100,000', turquoicPrice: '$8,000–$35,000' },
+    heroHeadline: 'Your Digital Partner\nfor the US Market.',
+    heroDescription: 'Turquoic works with US startups, SMBs, and brands to build digital products that drive real growth — websites, platforms, SEO systems, and brand identities built to perform in the American market.',
+    intro: 'The US digital market is sophisticated, competitive, and moves fast. The businesses that win online aren\'t the ones with the most budget — they\'re the ones with the clearest strategy and the best execution. That\'s what we bring.',
+    capabilities: [
+      {
+        title: 'High-Performance Web Development',
+        description: 'Next.js, React, TypeScript — modern, scalable web products built to the same standard as top US product studios. No WordPress drag, no template ceilings.',
+      },
+      {
+        title: 'Ecommerce & Growth Platforms',
+        description: 'Shopify and custom storefronts built for the US consumer. Optimised checkout, payment integrations, and performance tuned for Google and Meta.',
+      },
+      {
+        title: 'SEO & Content Strategy',
+        description: 'Organic search strategy built for US market competition. Keyword research, content architecture, and technical SEO that compounds over time.',
+      },
+      {
+        title: 'UI/UX & Product Design',
+        description: 'Design that converts — not just impresses. We work from user research and business goals, not aesthetic trends.',
+      },
+      {
+        title: 'Brand Identity',
+        description: 'Visual identity systems that position your business precisely — brand strategy, logo system, typography, and digital brand guidelines.',
+      },
+      {
+        title: 'Performance Advertising',
+        description: 'Google Ads and Meta Ads managed with a full-funnel mindset. We focus on CAC, ROAS, and revenue — not impressions.',
+      },
     ],
     whyUs: [
-      'Modern tech stack — Next.js, React, TypeScript, Shopify, Tailwind — no legacy code',
-      'Async-first workflow — detailed Loom updates, Notion docs, GitHub transparency',
-      'English-first team — native-level written English, no language barriers',
-      'India\'s IT industry is the world\'s offshore development backbone — you\'re hiring from that pool directly',
-      'Fixed-scope contracts with milestone-based payments — no open-ended billing',
-      'Overlap windows available for ET, CT, PT — we make real-time calls work',
+      'We work on a small client roster — your project gets senior attention from day one',
+      'You talk directly to the strategists, designers, and engineers doing the work',
+      'Async-first workflow — structured updates, Loom walkthroughs, GitHub transparency, Notion documentation',
+      'Modern tech stack: Next.js 14, React, TypeScript, Tailwind, Shopify — no legacy constraints',
+      'We sign NDAs, own nothing, and deliver full IP transfer on completion',
+      'US-compatible meeting windows available across ET, CT, MT, and PT',
     ],
     faqs: [
-      { q: 'How does async collaboration work across timezones?', a: 'We are 9.5–12.5 hours ahead of US timezones depending on your state. We use Loom videos for design walkthroughs, Notion for project docs, GitHub for code transparency, and Slack or email for async updates. You brief us in the evening, we build overnight, you review in the morning. Most US clients find this cycle faster than working with local agencies.' },
-      { q: 'What technology stack do you use?', a: 'Next.js 14, React, TypeScript, Tailwind CSS for web apps. Shopify for ecommerce. WordPress/Headless CMS for content-heavy sites. Figma for UI/UX. The same stack your US tech team or agency would recommend.' },
-      { q: 'How do payments work for US clients?', a: 'We accept ACH transfers, Wise, PayPal, and Stripe. All contracts are priced in USD. Standard terms: 50% upfront, 50% on delivery. For larger projects we use milestone-based payments.' },
-      { q: 'Do you sign NDAs and contracts?', a: 'Absolutely. We sign NDAs before any project discussion if required. All work is under a work-for-hire agreement — you own 100% of the code, design files, and assets delivered.' },
-      { q: 'How is your English communication quality?', a: 'Our team communicates entirely in English — written and spoken. All project briefs, status updates, and deliverables are in clear, professional English. We do not use account managers — you talk directly to the designers and developers building your product.' },
-      { q: 'What if I need ongoing support after launch?', a: 'We offer monthly retainer packages for US clients covering updates, performance monitoring, SEO maintenance, and feature additions. Many US clients use us as their dedicated offshore development team on a retainer basis.' },
+      {
+        q: 'How does remote collaboration work across US timezones?',
+        a: 'We run an async-first process that makes timezone a non-issue. You get Loom video walkthroughs for design reviews, Notion docs for project state, and structured weekly check-ins. For live calls, we offer early morning IST slots that overlap with US business hours across all timezones — ET through PT.',
+      },
+      {
+        q: 'What technology stack do you use?',
+        a: 'Next.js 14, React, TypeScript, and Tailwind CSS for web and application development. Shopify for ecommerce. Figma for UI/UX. The same stack used by top US product companies — no outdated tools, no proprietary lock-in.',
+      },
+      {
+        q: 'Do you sign NDAs and IP transfer agreements?',
+        a: 'Yes, always. We sign NDAs before any project discussion. All work is delivered under a work-for-hire agreement — you own 100% of the code, design files, and assets. We retain nothing.',
+      },
+      {
+        q: 'How do payments work for US clients?',
+        a: 'All projects are scoped and priced in USD with milestone-based payments. We accept ACH, Wise, and Stripe. A clear contract is signed before any work begins.',
+      },
+      {
+        q: 'How do you handle revisions and feedback cycles?',
+        a: 'Every project has defined revision rounds built into the scope. We use Figma for design feedback, GitHub for code review, and staging environments for final approval. Nothing goes live without your sign-off.',
+      },
+      {
+        q: 'Can you act as a long-term digital partner?',
+        a: 'Yes — many of our US clients work with us on retainer. We handle ongoing development, SEO, content, and performance marketing. We operate as an embedded part of your team, not a vendor you have to re-brief every time.',
+      },
     ],
-    stats: [
-      { value: '60–70%', label: 'Cost savings vs US agencies' },
-      { value: 'Next.js', label: 'Modern tech stack' },
-      { value: '7–14 days', label: 'Business website delivery' },
-      { value: '100%', label: 'Code ownership — yours' },
-    ],
-    ctaHeadline: 'Let\'s talk. Free consultation, no commitment.',
-    ctaDescription: 'We will review your project, share relevant portfolio pieces, and give you a fixed USD quote within 24 hours.',
+    ctaHeadline: 'Ready to work with a team that takes ownership?',
+    ctaDescription: 'Share your project brief. We\'ll respond with a strategy, timeline, and clear proposal within 24 hours.',
   },
 ]
 
