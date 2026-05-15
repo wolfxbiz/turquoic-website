@@ -11,7 +11,7 @@ import AccordionItem from '@/components/landing/ui/AccordionItem'
 import { staggerContainer, wordReveal, fadeUp, slideInLeft, slideInRight } from '@/lib/animations'
 import { Player } from '@lottiefiles/react-lottie-player'
 
-const REGISTER_URL = 'https://forms.gle/YOUR_GOOGLE_FORM_URL'
+const REGISTER_URL = 'https://forms.gle/NnLx4TQ7PYyjQ7AJ8'
 
 // ── logos (reuse site assets) ─────────────────────────────────────────────────
 const logos = [
@@ -434,7 +434,7 @@ function HookSection() {
 
   return (
     <section className="overflow-hidden flex flex-col lg:flex-row min-h-[80vh] w-full bg-white">
-      {/* Left — video */}
+      {/* Left — campaign video */}
       <motion.div
         ref={ref}
         variants={slideInLeft}
@@ -442,13 +442,15 @@ function HookSection() {
         animate={isInView ? 'visible' : 'hidden'}
         className="w-full lg:w-1/2 flex items-center p-4 lg:p-6"
       >
-        <div className="lg:hidden relative w-full rounded-card overflow-hidden" style={{ aspectRatio: '9/16' }}>
-          <video src="/assets/videos/hero-video-mobile.mp4" autoPlay loop muted playsInline
-            className="absolute inset-0 w-full h-full object-cover" />
-        </div>
-        <div className="hidden lg:block relative w-full h-full rounded-card overflow-hidden" style={{ minHeight: '560px' }}>
-          <video src="/assets/videos/hero-video-mobile.mp4" autoPlay loop muted playsInline
-            className="absolute inset-0 w-full h-full object-cover" />
+        <div className="relative w-full rounded-card overflow-hidden" style={{ aspectRatio: '16/9' }}>
+          <iframe
+            src="https://www.youtube.com/embed/vzbKN7dTusc?autoplay=1&mute=1&loop=1&playlist=vzbKN7dTusc&controls=0&modestbranding=1&rel=0"
+            title="AI Workshop Campaign"
+            allow="autoplay; encrypted-media"
+            allowFullScreen
+            className="absolute inset-0 w-full h-full"
+            style={{ border: 'none' }}
+          />
         </div>
       </motion.div>
 
@@ -546,7 +548,7 @@ function AudienceSection() {
               variants={fadeUp}
               whileHover="cardHover"
               transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-              className="group relative rounded-card overflow-hidden p-7 flex flex-col justify-between gap-4 cursor-default min-h-[280px]"
+              className="group relative rounded-card overflow-hidden px-7 pt-5 pb-7 flex flex-row items-stretch gap-4 cursor-default min-h-[220px]"
               style={{
                 background: 'rgba(255,255,255,0.05)',
                 border: '1px solid rgba(255,255,255,0.09)',
@@ -557,11 +559,27 @@ function AudienceSection() {
               <div className="absolute inset-0 rounded-card opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                 style={{ border: '1px solid rgba(45,212,192,0.4)', boxShadow: 'inset 0 0 40px rgba(45,212,192,0.05)' }} />
 
-              {/* Lottie illustration — slides right when parent card is hovered */}
+              {/* Left: text */}
+              <div className="flex-1 flex flex-col justify-end min-w-0 z-10">
+                <p className="font-body text-[11px] text-teal-strong uppercase tracking-[0.14em] mb-1.5">
+                  {a.subtitle}
+                </p>
+                <motion.h3
+                  className="font-display font-black text-[clamp(15px,1.6vw,20px)] uppercase leading-tight tracking-tight mb-3 text-white"
+                  variants={{ cardHover: { color: '#7FE8DC' } }}
+                >
+                  {a.title}
+                </motion.h3>
+                <p className="font-body text-white/55 text-[13px] leading-relaxed">
+                  {a.description}
+                </p>
+              </div>
+
+              {/* Right: Lottie — slides right on card hover */}
               <motion.div
-                className="w-full h-[160px]"
+                className="flex-shrink-0 w-[180px] self-stretch"
                 variants={{
-                  cardHover: { x: 20, scale: 1.04, transition: { type: 'spring', stiffness: 260, damping: 22 } },
+                  cardHover: { x: 12, transition: { type: 'spring', stiffness: 260, damping: 22 } },
                 }}
               >
                 <Player
@@ -571,22 +589,6 @@ function AudienceSection() {
                   style={{ width: '100%', height: '100%' }}
                 />
               </motion.div>
-
-              {/* Text */}
-              <div>
-                <p className="font-body text-[11px] text-teal-strong uppercase tracking-[0.14em] mb-1.5">
-                  {a.subtitle}
-                </p>
-                <motion.h3
-                  className="font-display font-black text-[clamp(16px,1.7vw,21px)] uppercase leading-tight tracking-tight mb-3"
-                  variants={{ cardHover: { color: '#7FE8DC' } }}
-                >
-                  {a.title}
-                </motion.h3>
-                <p className="font-body text-white/55 text-[13px] leading-relaxed">
-                  {a.description}
-                </p>
-              </div>
 
               {/* Bottom line — expands on hover */}
               <motion.span
