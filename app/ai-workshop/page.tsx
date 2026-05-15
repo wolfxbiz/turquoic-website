@@ -9,6 +9,7 @@ import SectionLabel from '@/components/ui/SectionLabel'
 import AnimatedHeading from '@/components/ui/AnimatedHeading'
 import AccordionItem from '@/components/landing/ui/AccordionItem'
 import { staggerContainer, wordReveal, fadeUp, slideInLeft, slideInRight } from '@/lib/animations'
+import { Player } from '@lottiefiles/react-lottie-player'
 
 const REGISTER_URL = 'https://forms.gle/YOUR_GOOGLE_FORM_URL'
 
@@ -81,28 +82,28 @@ const AUDIENCES = [
     subtitle: 'HR · Marketing · Sales · Finance',
     description:
       'Stay ahead of automation. Use AI to do in 10 minutes what used to take all day — and never worry about being replaced by someone who knows how to use it.',
-    image: '/assets/images/audience-professionals.svg',
+    lottie: '/assets/lottie/audience-professionals.json',
   },
   {
     title: 'Business Owners & Entrepreneurs',
     subtitle: 'SMEs · Retailers · Service Providers',
     description:
       'Cut costs, speed up your operations, and compete with bigger players using tools you can start today — no developer, no budget, no technical background needed.',
-    image: '/assets/images/audience-business.svg',
+    lottie: '/assets/lottie/audience-business.json',
   },
   {
     title: 'Students & Fresh Graduates',
     subtitle: 'College · Final Year · Job Seekers',
     description:
       'Add AI fluency to your resume before your peers do. Stand out in every interview and every application with skills that most graduates don\'t yet have.',
-    image: '/assets/images/audience-students.svg',
+    lottie: '/assets/lottie/audience-students.json',
   },
   {
     title: 'Teachers & Educators',
     subtitle: 'Schools · Colleges · Trainers',
     description:
       'Transform your classroom. Use AI to create content, save prep time, and teach smarter — without needing to become a tech expert.',
-    image: '/assets/images/audience-teachers.svg',
+    lottie: '/assets/lottie/audience-teachers.json',
   },
 ]
 
@@ -543,9 +544,9 @@ function AudienceSection() {
             <motion.div
               key={a.title}
               variants={fadeUp}
-              whileHover={{ scale: 1.02 }}
+              whileHover="cardHover"
               transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-              className="group relative rounded-card overflow-hidden p-7 flex flex-col justify-between gap-6 cursor-default min-h-[240px]"
+              className="group relative rounded-card overflow-hidden p-7 flex flex-col justify-between gap-4 cursor-default min-h-[280px]"
               style={{
                 background: 'rgba(255,255,255,0.05)',
                 border: '1px solid rgba(255,255,255,0.09)',
@@ -556,39 +557,42 @@ function AudienceSection() {
               <div className="absolute inset-0 rounded-card opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                 style={{ border: '1px solid rgba(45,212,192,0.4)', boxShadow: 'inset 0 0 40px rgba(45,212,192,0.05)' }} />
 
-              {/* Top row: text left, illustration right */}
-              <div className="flex items-start justify-between gap-4">
-                <div className="flex-1 min-w-0">
-                  <p className="font-body text-[11px] text-teal-strong uppercase tracking-[0.14em] mb-2">
-                    {a.subtitle}
-                  </p>
-                  <h3 className="font-display font-black text-[clamp(16px,1.7vw,21px)] text-white uppercase leading-tight tracking-tight group-hover:text-teal-mid transition-colors duration-300">
-                    {a.title}
-                  </h3>
-                </div>
-                {/* Illustration */}
-                <div className="flex-shrink-0 w-[110px] h-[90px] relative opacity-90 group-hover:opacity-100 transition-opacity duration-300">
-                  <Image
-                    src={a.image}
-                    alt={a.title}
-                    fill
-                    className="object-contain object-right-top"
-                    unoptimized
-                  />
-                </div>
-              </div>
+              {/* Lottie illustration — slides right when parent card is hovered */}
+              <motion.div
+                className="w-full h-[160px]"
+                variants={{
+                  cardHover: { x: 20, scale: 1.04, transition: { type: 'spring', stiffness: 260, damping: 22 } },
+                }}
+              >
+                <Player
+                  src={a.lottie}
+                  autoplay
+                  loop
+                  style={{ width: '100%', height: '100%' }}
+                />
+              </motion.div>
 
-              {/* Description */}
-              <p className="font-body text-white/55 text-[13px] leading-relaxed">
-                {a.description}
-              </p>
+              {/* Text */}
+              <div>
+                <p className="font-body text-[11px] text-teal-strong uppercase tracking-[0.14em] mb-1.5">
+                  {a.subtitle}
+                </p>
+                <motion.h3
+                  className="font-display font-black text-[clamp(16px,1.7vw,21px)] uppercase leading-tight tracking-tight mb-3"
+                  variants={{ cardHover: { color: '#7FE8DC' } }}
+                >
+                  {a.title}
+                </motion.h3>
+                <p className="font-body text-white/55 text-[13px] leading-relaxed">
+                  {a.description}
+                </p>
+              </div>
 
               {/* Bottom line — expands on hover */}
               <motion.span
                 className="absolute bottom-0 left-0 h-[2px] bg-teal-strong origin-left"
+                variants={{ cardHover: { scaleX: 1, transition: { duration: 0.35, ease: 'easeOut' } } }}
                 initial={{ scaleX: 0 }}
-                whileHover={{ scaleX: 1 }}
-                transition={{ duration: 0.35, ease: 'easeOut' }}
               />
             </motion.div>
           ))}
