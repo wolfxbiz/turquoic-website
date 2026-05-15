@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { motion, useInView, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -1039,27 +1039,41 @@ function FinalCTA() {
 function WorkshopNav() {
   const [scrolled, setScrolled] = useState(false)
 
-  if (typeof window !== 'undefined') {
-    // only in browser
-  }
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 60)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white/90 backdrop-blur-md border-b border-teal-mid/30 shadow-sm' : 'bg-transparent'
+        scrolled
+          ? 'bg-white/90 backdrop-blur-md border-b border-teal-mid/30 shadow-sm'
+          : 'bg-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-16">
-        <Link href="/" className="font-display font-bold text-2xl text-white uppercase tracking-tight" style={scrolled ? { color: '#1A1A1A' } : {}}>
+        <Link
+          href="/"
+          className="font-display font-bold text-2xl uppercase tracking-tight transition-colors duration-300"
+          style={{ color: scrolled ? '#1A1A1A' : '#0EA5A0' }}
+        >
           Turquoic
         </Link>
         <div className="flex items-center gap-6">
-          <a href="#modules" className="hidden md:block font-body text-[13px] uppercase tracking-wide transition-colors"
-            style={scrolled ? { color: '#555' } : { color: 'rgba(255,255,255,0.6)' }}>
+          <a
+            href="#modules"
+            className="hidden md:block font-body text-[13px] uppercase tracking-wide transition-colors duration-300"
+            style={{ color: scrolled ? '#555555' : '#0EA5A0' }}
+          >
             Modules
           </a>
-          <a href="#details" className="hidden md:block font-body text-[13px] uppercase tracking-wide transition-colors"
-            style={scrolled ? { color: '#555' } : { color: 'rgba(255,255,255,0.6)' }}>
+          <a
+            href="#details"
+            className="hidden md:block font-body text-[13px] uppercase tracking-wide transition-colors duration-300"
+            style={{ color: scrolled ? '#555555' : '#0EA5A0' }}
+          >
             Details
           </a>
           <RegisterBtn />
