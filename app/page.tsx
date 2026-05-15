@@ -18,9 +18,9 @@ import Contact from '@/components/sections/Contact'
 import MarqueeStrip from '@/components/ui/MarqueeStrip'
 
 export const metadata: Metadata = {
-  title: 'Best Website Development Company in Trivandrum, Kerala | Turquoic',
+  title: 'Best Website Development Company in Trivandrum | Turquoic',
   description:
-    'Turquoic is Trivandrum\'s top-rated website development company. We build fast, conversion-focused websites, ecommerce stores, and AI-powered web applications for businesses in Kerala and across India.',
+    'Turquoic builds fast, conversion-focused websites, ecommerce stores & AI web apps for businesses in Trivandrum, Kerala. Top-rated web development company.',
   alternates: {
     canonical: 'https://www.turquoic.com',
   },

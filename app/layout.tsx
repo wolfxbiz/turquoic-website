@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: '%s | Turquoic',
   },
   description:
-    'Turquoic is a leading website development company in Trivandrum, Kerala. We build high-performance websites, ecommerce stores, AI-powered web apps, and deliver full-scale digital marketing for businesses across India.',
+    'Website development company in Trivandrum, Kerala. High-performance websites, ecommerce stores, AI web apps & digital marketing for businesses across India.',
   keywords: [
     'website development company in Trivandrum',
     'website company in Trivandrum',

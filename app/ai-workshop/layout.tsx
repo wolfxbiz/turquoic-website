@@ -5,7 +5,7 @@ const pageUrl = 'https://www.turquoic.com/ai-workshop'
 export const metadata: Metadata = {
   title: 'AI Workshop — Learn AI in 1 Day | Turquoic',
   description:
-    'A hands-on, 1-day AI workshop for students, working professionals, and business owners. No technical background needed. Learn how to use AI in your actual day-to-day work. Online & in-person slots open.',
+    'Hands-on 1-day AI workshop for students, professionals & business owners. No tech background needed. Learn AI tools you can use starting today. Online & in-person slots open.',
   keywords: [
     'AI workshop Kerala',
     'AI training Trivandrum',

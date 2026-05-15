@@ -74,11 +74,11 @@ export default function Hero() {
           AI-POWERED BUSINESS SOLUTIONS
         </SectionLabel>
 
-        <h1 className="font-display font-extrabold text-[34px] leading-[1.05] tracking-tight text-dark">
+        <div role="heading" aria-level={1} className="font-display font-extrabold text-[34px] leading-[1.05] tracking-tight text-dark">
           {headline1}
           <span className="block">{headline2a}</span>
           <span className="block">{headline2b}</span>
-        </h1>
+        </div>
 
         <p className="font-body text-[15px] text-muted leading-relaxed -mt-1">
           Intelligent solutions for professionals who are serious about their time.
