@@ -9,7 +9,12 @@ import SectionLabel from '@/components/ui/SectionLabel'
 import AnimatedHeading from '@/components/ui/AnimatedHeading'
 import AccordionItem from '@/components/landing/ui/AccordionItem'
 import { staggerContainer, wordReveal, fadeUp, slideInLeft, slideInRight } from '@/lib/animations'
-import { Player } from '@lottiefiles/react-lottie-player'
+import dynamic from 'next/dynamic'
+
+const Player = dynamic(
+  () => import('@lottiefiles/react-lottie-player').then(m => m.Player),
+  { ssr: false }
+)
 
 const REGISTER_URL = 'https://forms.gle/NnLx4TQ7PYyjQ7AJ8'
 
