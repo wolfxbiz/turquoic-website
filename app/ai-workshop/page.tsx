@@ -440,11 +440,14 @@ function HookSection() {
         variants={slideInLeft}
         initial="hidden"
         animate={isInView ? 'visible' : 'hidden'}
-        className="w-full lg:w-1/2 flex items-center p-4 lg:p-6"
+        className="w-full lg:w-auto flex items-center justify-center p-4 lg:p-8"
       >
-        <div className="relative w-full rounded-card overflow-hidden" style={{ aspectRatio: '16/9' }}>
+        <div
+          className="relative rounded-card overflow-hidden w-full"
+          style={{ aspectRatio: '9/16', maxHeight: '680px', height: '75vh' }}
+        >
           <iframe
-            src="https://www.youtube.com/embed/vzbKN7dTusc?autoplay=1&mute=1&loop=1&playlist=vzbKN7dTusc&controls=0&modestbranding=1&rel=0"
+            src="https://www.youtube.com/embed/vznjFgI9-V4?autoplay=1&mute=1&loop=1&playlist=vznjFgI9-V4&rel=0"
             title="AI Workshop Campaign"
             allow="autoplay; encrypted-media"
             allowFullScreen
@@ -500,86 +503,89 @@ function AudienceSection() {
   const isInView = useInView(ref, { once: true, margin: '-10% 0px' })
 
   return (
-    <section id="audience" className="relative overflow-hidden py-24 lg:py-32">
+    <section id="audience" className="bg-dark py-24 lg:py-32 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8" ref={ref}>
 
-      {/* Full-bleed background image */}
-      <Image
-        src="/assets/images/ai-workshop-hero.jpg"
-        alt=""
-        fill
-        className="object-cover object-center"
-        aria-hidden
-      />
-
-      {/* Dark teal overlay */}
-      <div className="absolute inset-0 pointer-events-none"
-        style={{ background: 'linear-gradient(160deg, rgba(9,25,24,0.93) 0%, rgba(11,36,34,0.89) 100%)' }} />
-      {/* Radial glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] pointer-events-none opacity-25"
-        style={{ background: 'radial-gradient(ellipse, rgba(45,212,192,0.6) 0%, transparent 65%)' }} />
-
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8" ref={ref}>
-
-        {/* Header */}
+        {/* Header — label left, headline right */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mb-14"
+          className="flex flex-col lg:flex-row lg:items-end gap-6 lg:gap-20 mb-16 pb-12 border-b border-white/10"
         >
-          <SectionLabel color="#2DD4C0">02 — WHO IS THIS FOR</SectionLabel>
-          <AnimatedHeading
-            text="Built for people who work, not just people who code."
-            tag="h2"
-            className="font-display font-extrabold text-[clamp(28px,4vw,52px)] text-white leading-tight max-w-3xl uppercase"
-          />
+          <div className="flex-shrink-0">
+            <SectionLabel color="#2DD4C0">02 — WHO IS THIS FOR</SectionLabel>
+            <span
+              className="font-display font-black leading-none select-none block mt-2"
+              style={{ fontSize: 'clamp(4rem,8vw,9rem)', color: 'rgba(45,212,192,0.08)' }}
+            >
+              FOR
+            </span>
+          </div>
+          <div className="flex-1">
+            <AnimatedHeading
+              text="Built for people who work, not just people who code."
+              tag="h2"
+              className="font-display font-extrabold text-[clamp(26px,3.6vw,50px)] text-white leading-tight uppercase"
+            />
+            <p className="font-body text-white/40 text-[15px] leading-relaxed mt-4 max-w-lg">
+              Whether you're a student, a business owner, an educator, or a professional — this workshop was built for your life.
+            </p>
+          </div>
         </motion.div>
 
-        {/* 2×2 glass cards */}
+        {/* 2×2 cards */}
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
-          className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-5"
+          className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-white/10 rounded-card overflow-hidden"
         >
           {AUDIENCES.map((a, i) => (
             <motion.div
               key={a.title}
               variants={fadeUp}
               whileHover="cardHover"
-              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-              className="group relative rounded-card overflow-hidden px-7 pt-5 pb-7 flex flex-row items-stretch gap-4 cursor-default min-h-[220px]"
-              style={{
-                background: 'rgba(255,255,255,0.05)',
-                border: '1px solid rgba(255,255,255,0.09)',
-                backdropFilter: 'blur(14px)',
-              }}
+              className="group relative flex flex-row items-stretch gap-0 cursor-default overflow-hidden"
+              style={{ background: '#0D1A19', minHeight: '280px' }}
             >
-              {/* Hover border glow */}
-              <div className="absolute inset-0 rounded-card opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                style={{ border: '1px solid rgba(45,212,192,0.4)', boxShadow: 'inset 0 0 40px rgba(45,212,192,0.05)' }} />
+              {/* Teal left-border accent — grows on hover */}
+              <motion.span
+                className="absolute left-0 top-0 w-[3px] bg-teal-strong origin-top"
+                initial={{ scaleY: 0 }}
+                variants={{ cardHover: { scaleY: 1, transition: { duration: 0.35, ease: 'easeOut' } } }}
+              />
 
-              {/* Left: text */}
-              <div className="flex-1 flex flex-col justify-end min-w-0 z-10">
-                <p className="font-body text-[11px] text-teal-strong uppercase tracking-[0.14em] mb-1.5">
+              {/* Big faded index */}
+              <span
+                className="absolute top-4 left-7 font-display font-black leading-none select-none pointer-events-none"
+                style={{ fontSize: 'clamp(3.5rem,5vw,5.5rem)', color: 'rgba(45,212,192,0.06)' }}
+              >
+                0{i + 1}
+              </span>
+
+              {/* Text — left side */}
+              <div className="flex-1 flex flex-col justify-end min-w-0 px-7 pt-10 pb-8 z-10">
+                <p className="font-body text-[11px] text-teal-strong uppercase tracking-[0.14em] mb-2">
                   {a.subtitle}
                 </p>
                 <motion.h3
-                  className="font-display font-black text-[clamp(15px,1.6vw,20px)] uppercase leading-tight tracking-tight mb-3 text-white"
-                  variants={{ cardHover: { color: '#7FE8DC' } }}
+                  className="font-display font-black text-[clamp(15px,1.6vw,21px)] uppercase leading-tight tracking-tight mb-3 text-white"
+                  variants={{ cardHover: { color: '#2DD4C0' } }}
                 >
                   {a.title}
                 </motion.h3>
-                <p className="font-body text-white/55 text-[13px] leading-relaxed">
+                <p className="font-body text-white/40 text-[13px] leading-relaxed">
                   {a.description}
                 </p>
               </div>
 
-              {/* Right: Lottie — slides right on card hover */}
+              {/* Lottie — right side, bleeds to bottom edge */}
               <motion.div
-                className="flex-shrink-0 w-[180px] self-stretch"
+                className="flex-shrink-0 self-stretch"
+                style={{ width: '52%', marginBottom: '-8px', marginRight: '-8px' }}
                 variants={{
-                  cardHover: { x: 12, transition: { type: 'spring', stiffness: 260, damping: 22 } },
+                  cardHover: { x: 10, transition: { type: 'spring', stiffness: 260, damping: 22 } },
                 }}
               >
                 <Player
@@ -589,13 +595,6 @@ function AudienceSection() {
                   style={{ width: '100%', height: '100%' }}
                 />
               </motion.div>
-
-              {/* Bottom line — expands on hover */}
-              <motion.span
-                className="absolute bottom-0 left-0 h-[2px] bg-teal-strong origin-left"
-                variants={{ cardHover: { scaleX: 1, transition: { duration: 0.35, ease: 'easeOut' } } }}
-                initial={{ scaleX: 0 }}
-              />
             </motion.div>
           ))}
         </motion.div>
@@ -604,11 +603,11 @@ function AudienceSection() {
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.5 }}
+          transition={{ duration: 0.6, delay: 0.55 }}
           className="mt-12 flex items-center gap-6 flex-wrap"
         >
           <RegisterBtn large />
-          <p className="font-body text-white/35 text-[13px]">
+          <p className="font-body text-white/30 text-[13px]">
             Online & in-person · English & Malayalam · No tech background needed
           </p>
         </motion.div>
