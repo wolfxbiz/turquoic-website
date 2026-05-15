@@ -18,28 +18,12 @@ const Player = dynamic(
 
 const REGISTER_URL = 'https://forms.gle/NnLx4TQ7PYyjQ7AJ8'
 
-// ── logos (reuse site assets) ─────────────────────────────────────────────────
-const logos = [
-  { src: '/assets/logos/hsbc.png',                 alt: 'HSBC',                 w: 120 },
-  { src: '/assets/logos/kpmg.png',                 alt: 'KPMG',                 w: 100 },
-  { src: '/assets/logos/nielsen.png',              alt: 'Nielsen',              w: 130 },
-  { src: '/assets/logos/kantar-tns.png',           alt: 'Kantar TNS',           w: 140 },
-  { src: '/assets/logos/dubai-police-academy.png', alt: 'Dubai Police Academy', w: 160 },
-  { src: '/assets/logos/dali-advertising.png',     alt: 'DALI Advertising',     w: 140 },
-  { src: '/assets/logos/tott-books.png',           alt: 'TOTT Books',           w: 130 },
-  { src: '/assets/logos/marunadam-malayalee.png',  alt: 'Marunadam Malayalee',  w: 150 },
-  { src: '/assets/logos/foretell-global.png',      alt: 'Foretell Global',      w: 150 },
-  { src: '/assets/logos/hylomart.png',             alt: 'HyloMart',             w: 140 },
-  { src: '/assets/logos/alya-auditors.png',        alt: 'Alya Auditors',        w: 140 },
-]
-const logoTrack = [...logos, ...logos, ...logos]
-
 // ── data ──────────────────────────────────────────────────────────────────────
 
 const MODULES = [
   {
     id: '01',
-    title: 'AI Landscape 2025',
+    title: 'AI Landscape 2026',
     time: '9:00 – 10:00 AM',
     description:
       'What tools actually exist, what\'s hype vs. what\'s real, and where things are heading. No fluff — just clarity on what matters and what you can skip.',
@@ -399,35 +383,82 @@ function Hero() {
         </motion.div>
       </div>
 
-      {/* Logo strip */}
-      <motion.div
-        initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 1.0 }}
-        className="relative z-10 w-full bg-white py-6 sm:py-8 overflow-hidden"
-      >
-        <p className="text-center font-body text-[11px] uppercase tracking-[0.15em] text-muted mb-5">
-          Professionals from these organisations have attended
-        </p>
-        <div className="relative">
-          <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-28 z-10 pointer-events-none"
-            style={{ background: 'linear-gradient(to right, #ffffff, transparent)' }} />
-          <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-28 z-10 pointer-events-none"
-            style={{ background: 'linear-gradient(to left, #ffffff, transparent)' }} />
-          <motion.div
-            className="flex items-center gap-10 sm:gap-14 md:gap-16 w-max"
-            animate={{ x: ['0%', '-33.333%'] }}
-            transition={{ duration: 50, ease: 'linear', repeat: Infinity, repeatType: 'loop' }}
-          >
-            {logoTrack.map((logo, i) => (
-              <div key={i} className="flex-shrink-0 flex items-center justify-center px-4 sm:px-6 h-14 md:h-[60px]">
-                <Image src={logo.src} alt={logo.alt} width={logo.w} height={48} unoptimized
-                  className="object-contain h-full w-auto opacity-70 hover:opacity-100 transition-opacity duration-300" />
-              </div>
-            ))}
-          </motion.div>
-        </div>
-      </motion.div>
     </section>
+  )
+}
+
+// ── AI TOOLS MARQUEE ─────────────────────────────────────────────────────────
+
+const APP_ICONS = [
+  { src: '/assets/appicons/ChatGPT.png',        name: 'ChatGPT' },
+  { src: '/assets/appicons/Claude.png',          name: 'Claude' },
+  { src: '/assets/appicons/Gemini.png',          name: 'Gemini' },
+  { src: '/assets/appicons/Perplexity.png',      name: 'Perplexity' },
+  { src: '/assets/appicons/Cursor.png',          name: 'Cursor' },
+  { src: '/assets/appicons/Notion.png',          name: 'Notion' },
+  { src: '/assets/appicons/Grok.png',            name: 'Grok' },
+  { src: '/assets/appicons/DeepSeek.png',        name: 'DeepSeek' },
+  { src: '/assets/appicons/Mistral AI.png',      name: 'Mistral' },
+  { src: '/assets/appicons/Cohere.png',          name: 'Cohere' },
+  { src: '/assets/appicons/Codex.png',           name: 'Codex' },
+  { src: '/assets/appicons/Hugging Face.png',    name: 'Hugging Face' },
+  { src: '/assets/appicons/stability.ai.png',    name: 'Stability AI' },
+  { src: '/assets/appicons/Poe.png',             name: 'Poe' },
+  { src: '/assets/appicons/manus.png',           name: 'Manus' },
+  { src: '/assets/appicons/Antigravity.png',     name: 'Antigravity' },
+  { src: '/assets/appicons/Apple Intelligent.png', name: 'Apple Intelligence' },
+  { src: '/assets/appicons/Fireworks AI.png',    name: 'Fireworks AI' },
+  { src: '/assets/appicons/Kimi.png',            name: 'Kimi' },
+  { src: '/assets/appicons/MiniMax.png',         name: 'MiniMax' },
+  { src: '/assets/appicons/Qwen.png',            name: 'Qwen' },
+  { src: '/assets/appicons/ChatGPT-1.png',       name: 'ChatGPT o1' },
+]
+
+function ToolsMarquee() {
+  const icons = [...APP_ICONS, ...APP_ICONS, ...APP_ICONS]
+
+  return (
+    <div className="bg-white border-y border-dark/8 py-6 overflow-hidden">
+      <p className="text-center font-body text-[11px] uppercase tracking-[0.18em] text-muted/50 mb-5">
+        AI tools you&apos;ll learn to use
+      </p>
+      <div className="relative overflow-hidden">
+        {/* Fade edges */}
+        <div className="absolute left-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
+          style={{ background: 'linear-gradient(to right, white, transparent)' }} />
+        <div className="absolute right-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
+          style={{ background: 'linear-gradient(to left, white, transparent)' }} />
+
+        <motion.div
+          className="flex gap-5 w-max"
+          animate={{ x: ['0%', '-33.333%'] }}
+          transition={{ duration: 35, ease: 'linear', repeat: Infinity, repeatType: 'loop' }}
+        >
+          {icons.map((icon, i) => (
+            <motion.div
+              key={i}
+              whileHover={{ scale: 1.25, y: -8 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 18 }}
+              className="flex-shrink-0 flex flex-col items-center gap-2 cursor-pointer group"
+            >
+              <div className="w-14 h-14 rounded-2xl overflow-hidden shadow-sm group-hover:shadow-lg transition-shadow duration-200">
+                <Image
+                  src={icon.src}
+                  alt={icon.name}
+                  width={56}
+                  height={56}
+                  className="w-full h-full object-cover"
+                  unoptimized
+                />
+              </div>
+              <span className="font-body text-[10px] text-muted/60 group-hover:text-teal-accent transition-colors duration-200 whitespace-nowrap">
+                {icon.name}
+              </span>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </div>
   )
 }
 
@@ -894,8 +925,8 @@ function DetailsSection() {
   const listInView = useInView(listRef, { once: true, amount: 0.15 })
 
   const details = [
-    { id: '01', title: 'Duration', value: 'One full day — 9:00 AM to 5:30 PM' },
-    { id: '02', title: 'Format', value: 'Online via Zoom · In-person in Trivandrum & Kochi' },
+    { id: '01', title: 'Duration', value: 'One full day' },
+    { id: '02', title: 'Format', value: 'Online via Zoom · In-person' },
     { id: '03', title: 'Language', value: 'English & Malayalam' },
     { id: '04', title: 'Batch Size', value: 'Small groups for better learning — seats are limited' },
     { id: '05', title: 'What to Bring', value: 'Just a laptop or tablet with internet. We handle everything else.' },
@@ -1146,6 +1177,7 @@ export default function AIWorkshopPage() {
       <WorkshopNav />
       <main>
         <Hero />
+        <ToolsMarquee />
         <HookSection />
         <AudienceSection />
         <ModulesSection />
