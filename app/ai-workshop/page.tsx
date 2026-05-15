@@ -493,100 +493,110 @@ function AudienceSection() {
   const isInView = useInView(ref, { once: true, margin: '-10% 0px' })
 
   return (
-    <section id="audience" className="bg-[#F7FFFE] py-24 lg:py-32">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8" ref={ref}>
+    <section id="audience" className="relative overflow-hidden py-24 lg:py-32">
+
+      {/* Full-bleed background image */}
+      <Image
+        src="/assets/images/ai-workshop-hero.jpg"
+        alt=""
+        fill
+        className="object-cover object-center"
+        aria-hidden
+      />
+
+      {/* Dark teal overlay */}
+      <div className="absolute inset-0 pointer-events-none"
+        style={{ background: 'linear-gradient(160deg, rgba(9,25,24,0.93) 0%, rgba(11,36,34,0.89) 100%)' }} />
+      {/* Radial glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] pointer-events-none opacity-25"
+        style={{ background: 'radial-gradient(ellipse, rgba(45,212,192,0.6) 0%, transparent 65%)' }} />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8" ref={ref}>
+
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="mb-14"
         >
-          <SectionLabel>02 — WHO IS THIS FOR</SectionLabel>
+          <SectionLabel color="#2DD4C0">02 — WHO IS THIS FOR</SectionLabel>
           <AnimatedHeading
             text="Built for people who work, not just people who code."
             tag="h2"
-            className="font-display font-extrabold text-[clamp(28px,4vw,52px)] text-dark leading-tight max-w-3xl uppercase"
+            className="font-display font-extrabold text-[clamp(28px,4vw,52px)] text-white leading-tight max-w-3xl uppercase"
           />
         </motion.div>
 
-        {/* Row 1: wide + narrow */}
+        {/* 2×2 glass cards */}
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
-          className="grid grid-cols-1 md:grid-cols-5 gap-5 mb-5"
+          className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-5"
         >
-          <motion.div variants={fadeUp} className="md:col-span-3">
-            <div className="bg-gradient-card rounded-card p-8 flex flex-col gap-5 h-full"
-              style={{ boxShadow: '0 8px 40px rgba(45,212,192,0.12)' }}>
-              <div className="w-12 h-12 rounded-xl bg-white/60 flex items-center justify-center flex-shrink-0">
-                <span className="font-display font-black text-teal-accent text-xl">01</span>
-              </div>
+          {AUDIENCES.map((a, i) => (
+            <motion.div
+              key={a.title}
+              variants={fadeUp}
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+              className="group relative rounded-card overflow-hidden p-8 flex flex-col gap-5 cursor-default"
+              style={{
+                background: 'rgba(255,255,255,0.05)',
+                border: '1px solid rgba(255,255,255,0.09)',
+                backdropFilter: 'blur(14px)',
+              }}
+            >
+              {/* Hover border glow */}
+              <div className="absolute inset-0 rounded-card opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                style={{ border: '1px solid rgba(45,212,192,0.4)', boxShadow: 'inset 0 0 40px rgba(45,212,192,0.05)' }} />
+
+              {/* Big faded number */}
+              <span
+                className="font-display font-black leading-none select-none"
+                style={{ fontSize: 'clamp(3rem,5vw,4.5rem)', color: 'rgba(45,212,192,0.15)' }}
+              >
+                0{i + 1}
+              </span>
+
+              {/* Text */}
               <div>
-                <h3 className="font-display font-bold text-[18px] text-dark leading-tight mb-1 uppercase tracking-wide">
-                  {AUDIENCES[0].title}
+                <h3 className="font-display font-black text-[clamp(17px,1.8vw,22px)] text-white uppercase leading-tight tracking-tight mb-1 group-hover:text-teal-mid transition-colors duration-300">
+                  {a.title}
                 </h3>
-                <p className="font-body text-[12px] text-teal-accent uppercase tracking-[0.12em] mb-3">{AUDIENCES[0].subtitle}</p>
-                <p className="font-body text-muted leading-relaxed text-[15px]">{AUDIENCES[0].description}</p>
+                <p className="font-body text-[11px] text-teal-strong uppercase tracking-[0.14em] mb-4">
+                  {a.subtitle}
+                </p>
+                <p className="font-body text-white/55 text-[14px] leading-relaxed">
+                  {a.description}
+                </p>
               </div>
-            </div>
-          </motion.div>
-          <motion.div variants={fadeUp} className="md:col-span-2">
-            <div className="bg-gradient-card rounded-card p-8 flex flex-col gap-5 h-full"
-              style={{ boxShadow: '0 8px 40px rgba(45,212,192,0.12)' }}>
-              <div className="w-12 h-12 rounded-xl bg-white/60 flex items-center justify-center flex-shrink-0">
-                <span className="font-display font-black text-teal-accent text-xl">02</span>
-              </div>
-              <div>
-                <h3 className="font-display font-bold text-[18px] text-dark leading-tight mb-1 uppercase tracking-wide">
-                  {AUDIENCES[1].title}
-                </h3>
-                <p className="font-body text-[12px] text-teal-accent uppercase tracking-[0.12em] mb-3">{AUDIENCES[1].subtitle}</p>
-                <p className="font-body text-muted leading-relaxed text-[15px]">{AUDIENCES[1].description}</p>
-              </div>
-            </div>
-          </motion.div>
+
+              {/* Bottom line — expands on hover */}
+              <motion.span
+                className="absolute bottom-0 left-0 h-[2px] bg-teal-strong origin-left"
+                initial={{ scaleX: 0 }}
+                whileHover={{ scaleX: 1 }}
+                transition={{ duration: 0.35, ease: 'easeOut' }}
+              />
+            </motion.div>
+          ))}
         </motion.div>
 
-        {/* Row 2: narrow + wide */}
+        {/* CTA row */}
         <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          animate={isInView ? 'visible' : 'hidden'}
-          className="grid grid-cols-1 md:grid-cols-5 gap-5"
-          transition={{ delayChildren: 0.2 }}
+          initial={{ opacity: 0, y: 16 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="mt-12 flex items-center gap-6 flex-wrap"
         >
-          <motion.div variants={fadeUp} className="md:col-span-2">
-            <div className="bg-gradient-card rounded-card p-8 flex flex-col gap-5 h-full"
-              style={{ boxShadow: '0 8px 40px rgba(45,212,192,0.12)' }}>
-              <div className="w-12 h-12 rounded-xl bg-white/60 flex items-center justify-center flex-shrink-0">
-                <span className="font-display font-black text-teal-accent text-xl">03</span>
-              </div>
-              <div>
-                <h3 className="font-display font-bold text-[18px] text-dark leading-tight mb-1 uppercase tracking-wide">
-                  {AUDIENCES[2].title}
-                </h3>
-                <p className="font-body text-[12px] text-teal-accent uppercase tracking-[0.12em] mb-3">{AUDIENCES[2].subtitle}</p>
-                <p className="font-body text-muted leading-relaxed text-[15px]">{AUDIENCES[2].description}</p>
-              </div>
-            </div>
-          </motion.div>
-          <motion.div variants={fadeUp} className="md:col-span-3">
-            <div className="bg-gradient-card rounded-card p-8 flex flex-col gap-5 h-full"
-              style={{ boxShadow: '0 8px 40px rgba(45,212,192,0.12)' }}>
-              <div className="w-12 h-12 rounded-xl bg-white/60 flex items-center justify-center flex-shrink-0">
-                <span className="font-display font-black text-teal-accent text-xl">04</span>
-              </div>
-              <div>
-                <h3 className="font-display font-bold text-[18px] text-dark leading-tight mb-1 uppercase tracking-wide">
-                  {AUDIENCES[3].title}
-                </h3>
-                <p className="font-body text-[12px] text-teal-accent uppercase tracking-[0.12em] mb-3">{AUDIENCES[3].subtitle}</p>
-                <p className="font-body text-muted leading-relaxed text-[15px]">{AUDIENCES[3].description}</p>
-              </div>
-            </div>
-          </motion.div>
+          <RegisterBtn large />
+          <p className="font-body text-white/35 text-[13px]">
+            Online & in-person · English & Malayalam · No tech background needed
+          </p>
         </motion.div>
+
       </div>
     </section>
   )
