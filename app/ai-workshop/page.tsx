@@ -433,18 +433,18 @@ function HookSection() {
   const isInView = useInView(ref, { once: true, margin: '-10% 0px' })
 
   return (
-    <section className="overflow-hidden flex flex-col lg:flex-row min-h-[80vh] w-full bg-white">
+    <section className="overflow-hidden flex flex-col lg:flex-row min-h-[80vh] w-full bg-dark">
       {/* Left — campaign video */}
       <motion.div
         ref={ref}
         variants={slideInLeft}
         initial="hidden"
         animate={isInView ? 'visible' : 'hidden'}
-        className="w-full lg:w-auto flex items-center justify-center p-4 lg:p-8"
+        className="w-full lg:w-1/2 flex items-center justify-center p-4 lg:p-8 self-stretch"
       >
         <div
           className="relative rounded-card overflow-hidden w-full"
-          style={{ aspectRatio: '9/16', maxHeight: '680px', height: '75vh' }}
+          style={{ aspectRatio: '16/9' }}
         >
           <iframe
             src="https://www.youtube.com/embed/vznjFgI9-V4?autoplay=1&mute=1&loop=1&playlist=vznjFgI9-V4&rel=0"
@@ -462,27 +462,27 @@ function HookSection() {
         variants={slideInRight}
         initial="hidden"
         animate={isInView ? 'visible' : 'hidden'}
-        className="bg-white w-full lg:w-1/2 flex items-center justify-center px-10 md:px-16 lg:px-20 xl:px-28 py-20 lg:py-0"
+        className="bg-dark w-full lg:w-1/2 flex items-center justify-center px-10 md:px-16 lg:px-20 xl:px-28 py-20 lg:py-0"
       >
         <div className="w-full max-w-xl">
-          <SectionLabel>01 — THE PROBLEM</SectionLabel>
+          <SectionLabel color="#2DD4C0">01 — THE PROBLEM</SectionLabel>
           <AnimatedHeading
             text="Everyone's talking about AI. Almost nobody knows how to use it."
             tag="h2"
-            className="font-display font-extrabold text-[clamp(28px,3.2vw,46px)] text-dark leading-tight mb-4 uppercase"
+            className="font-display font-extrabold text-[clamp(28px,3.2vw,46px)] text-white leading-tight mb-4 uppercase"
           />
           <div className="w-16 h-1 bg-teal-strong rounded-full mb-8" />
           <div className="flex flex-col gap-5">
-            <p className="font-body text-muted text-[16px] leading-relaxed">
+            <p className="font-body text-white/55 text-[16px] leading-relaxed">
               The AI conversation is everywhere — in every boardroom, every classroom, every WhatsApp group.
               But most people are still on the outside looking in. They know it matters.
               They just don't know where to start.
             </p>
-            <p className="font-body text-muted text-[16px] leading-relaxed">
+            <p className="font-body text-white/55 text-[16px] leading-relaxed">
               Not the basics. Not just ChatGPT prompts. Actually using AI to work faster, think sharper,
               and get ahead — whether you're a student, a teacher, a business owner, or an employee.
             </p>
-            <p className="font-body text-muted text-[16px] leading-relaxed">
+            <p className="font-body text-white/55 text-[16px] leading-relaxed">
               That's exactly what this workshop is. One day. Hands-on. No jargon.
               You leave with real skills and a workflow built for your actual life.
             </p>
@@ -503,7 +503,7 @@ function AudienceSection() {
   const isInView = useInView(ref, { once: true, margin: '-10% 0px' })
 
   return (
-    <section id="audience" className="bg-dark py-24 lg:py-32 overflow-hidden">
+    <section id="audience" className="bg-white py-24 lg:py-32 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-8" ref={ref}>
 
         {/* Header — label left, headline right */}
@@ -511,13 +511,13 @@ function AudienceSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="flex flex-col lg:flex-row lg:items-end gap-6 lg:gap-20 mb-16 pb-12 border-b border-white/10"
+          className="flex flex-col lg:flex-row lg:items-end gap-6 lg:gap-20 mb-16 pb-12 border-b border-dark/10"
         >
           <div className="flex-shrink-0">
             <SectionLabel color="#2DD4C0">02 — WHO IS THIS FOR</SectionLabel>
             <span
               className="font-display font-black leading-none select-none block mt-2"
-              style={{ fontSize: 'clamp(4rem,8vw,9rem)', color: 'rgba(45,212,192,0.08)' }}
+              style={{ fontSize: 'clamp(4rem,8vw,9rem)', color: 'rgba(14,165,160,0.1)' }}
             >
               FOR
             </span>
@@ -526,9 +526,9 @@ function AudienceSection() {
             <AnimatedHeading
               text="Built for people who work, not just people who code."
               tag="h2"
-              className="font-display font-extrabold text-[clamp(26px,3.6vw,50px)] text-white leading-tight uppercase"
+              className="font-display font-extrabold text-[clamp(26px,3.6vw,50px)] text-dark leading-tight uppercase"
             />
-            <p className="font-body text-white/40 text-[15px] leading-relaxed mt-4 max-w-lg">
+            <p className="font-body text-muted text-[15px] leading-relaxed mt-4 max-w-lg">
               Whether you're a student, a business owner, an educator, or a professional — this workshop was built for your life.
             </p>
           </div>
@@ -539,15 +539,15 @@ function AudienceSection() {
           variants={staggerContainer}
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
-          className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-white/10 rounded-card overflow-hidden"
+          className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-dark/8 rounded-card overflow-hidden border border-dark/8"
         >
           {AUDIENCES.map((a, i) => (
             <motion.div
               key={a.title}
               variants={fadeUp}
               whileHover="cardHover"
-              className="group relative flex flex-row items-stretch gap-0 cursor-default overflow-hidden"
-              style={{ background: '#0D1A19', minHeight: '280px' }}
+              className="group relative flex flex-col sm:flex-row items-stretch gap-0 cursor-default overflow-hidden"
+              style={{ background: '#F4FAFA' }}
             >
               {/* Teal left-border accent — grows on hover */}
               <motion.span
@@ -556,34 +556,34 @@ function AudienceSection() {
                 variants={{ cardHover: { scaleY: 1, transition: { duration: 0.35, ease: 'easeOut' } } }}
               />
 
-              {/* Big faded index */}
+              {/* Big faded index — desktop only */}
               <span
-                className="absolute top-4 left-7 font-display font-black leading-none select-none pointer-events-none"
-                style={{ fontSize: 'clamp(3.5rem,5vw,5.5rem)', color: 'rgba(45,212,192,0.06)' }}
+                className="hidden sm:block absolute top-4 left-7 font-display font-black leading-none select-none pointer-events-none"
+                style={{ fontSize: 'clamp(3.5rem,5vw,5.5rem)', color: 'rgba(14,165,160,0.1)' }}
               >
                 0{i + 1}
               </span>
 
-              {/* Text — left side */}
-              <div className="flex-1 flex flex-col justify-end min-w-0 px-7 pt-10 pb-8 z-10">
-                <p className="font-body text-[11px] text-teal-strong uppercase tracking-[0.14em] mb-2">
+              {/* Text */}
+              <div className="flex-1 flex flex-col justify-start sm:justify-end min-w-0 px-6 pt-4 pb-7 sm:pt-10 sm:pb-8 z-10">
+                <p className="font-body text-[10px] text-teal-strong uppercase tracking-[0.12em] mb-1.5">
                   {a.subtitle}
                 </p>
                 <motion.h3
-                  className="font-display font-black text-[clamp(15px,1.6vw,21px)] uppercase leading-tight tracking-tight mb-3 text-white"
-                  variants={{ cardHover: { color: '#2DD4C0' } }}
+                  className="font-display font-black text-[18px] sm:text-[clamp(15px,1.6vw,21px)] uppercase leading-tight tracking-tight mb-2.5 text-dark"
+                  variants={{ cardHover: { color: '#0EA5A0' } }}
                 >
                   {a.title}
                 </motion.h3>
-                <p className="font-body text-white/40 text-[13px] leading-relaxed">
+                <p className="font-body text-muted text-[13px] leading-relaxed">
                   {a.description}
                 </p>
               </div>
 
-              {/* Lottie — right side, bleeds to bottom edge */}
+              {/* Lottie — stacks on top on mobile, right panel on desktop */}
               <motion.div
-                className="flex-shrink-0 self-stretch"
-                style={{ width: '52%', marginBottom: '-8px', marginRight: '-8px' }}
+                className="w-full sm:flex-shrink-0 sm:w-[52%] sm:self-stretch order-first sm:order-last"
+                style={{ height: '220px' }}
                 variants={{
                   cardHover: { x: 10, transition: { type: 'spring', stiffness: 260, damping: 22 } },
                 }}
@@ -592,7 +592,7 @@ function AudienceSection() {
                   src={a.lottie}
                   autoplay
                   loop
-                  style={{ width: '100%', height: '100%' }}
+                  style={{ width: '100%', height: '220px' }}
                 />
               </motion.div>
             </motion.div>
@@ -607,7 +607,7 @@ function AudienceSection() {
           className="mt-12 flex items-center gap-6 flex-wrap"
         >
           <RegisterBtn large />
-          <p className="font-body text-white/30 text-[13px]">
+          <p className="font-body text-muted/60 text-[13px]">
             Online & in-person · English & Malayalam · No tech background needed
           </p>
         </motion.div>
