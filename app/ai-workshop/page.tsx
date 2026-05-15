@@ -102,36 +102,42 @@ const TESTIMONIALS = [
     author: 'Sreeja Nair',
     role: 'HR Manager',
     company: 'Trivandrum',
+    avatar: '/assets/lottie/avatar-female-painter.json',
   },
   {
     quote: 'Our whole marketing team attended. We walked out with an actual content workflow using AI. We\'ve cut our content production time by 60% since then.',
     author: 'Arun Mathew',
     role: 'Marketing Lead',
     company: 'Kochi',
+    avatar: '/assets/lottie/avatar-boy.json',
   },
   {
     quote: 'As a teacher I was nervous about AI. Now I use it every single day for lesson planning and student feedback. This workshop changed how I work completely.',
     author: 'Meera Thomas',
     role: 'College Lecturer',
     company: 'Thrissur',
+    avatar: '/assets/lottie/avatar-girl-headphones.json',
   },
   {
     quote: 'I expected a boring seminar. Instead I built an actual automation for my business during the workshop itself. Completely different from what I imagined.',
     author: 'Rahul Krishnan',
     role: 'Founder',
     company: 'Startup, Kozhikode',
+    avatar: '/assets/lottie/avatar-sportsman.json',
   },
   {
     quote: 'The workshop is genuinely different from every other AI talk I\'ve seen. They actually make you use the tools, not just listen to someone talk about them.',
     author: 'Divya Menon',
     role: 'Content Strategist',
     company: 'Bangalore',
+    avatar: '/assets/lottie/avatar-girl-headphones.json',
   },
   {
     quote: 'Worth every rupee. I walked out knowing exactly which tools to use for my work and how to use them. No confusion, no overwhelm.',
     author: 'Joseph Varghese',
     role: 'Financial Advisor',
     company: 'Trivandrum',
+    avatar: '/assets/lottie/avatar-boy.json',
   },
 ]
 
@@ -418,11 +424,11 @@ function ToolsMarquee() {
   const icons = [...APP_ICONS, ...APP_ICONS, ...APP_ICONS]
 
   return (
-    <div className="bg-white border-y border-dark/8 py-6 overflow-hidden">
+    <div className="bg-white border-y border-dark/8 pt-6 pb-10 overflow-x-hidden">
       <p className="text-center font-body text-[11px] uppercase tracking-[0.18em] text-muted/50 mb-5">
         AI tools you&apos;ll learn to use
       </p>
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-x-hidden py-4">
         {/* Fade edges */}
         <div className="absolute left-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
           style={{ background: 'linear-gradient(to right, white, transparent)' }} />
@@ -430,30 +436,90 @@ function ToolsMarquee() {
           style={{ background: 'linear-gradient(to left, white, transparent)' }} />
 
         <motion.div
-          className="flex gap-5 w-max"
+          className="flex gap-12 w-max items-center px-6"
           animate={{ x: ['0%', '-33.333%'] }}
-          transition={{ duration: 35, ease: 'linear', repeat: Infinity, repeatType: 'loop' }}
+          transition={{ duration: 80, ease: 'linear', repeat: Infinity, repeatType: 'loop' }}
         >
           {icons.map((icon, i) => (
             <motion.div
               key={i}
-              whileHover={{ scale: 1.25, y: -8 }}
+              whileHover={{ scale: 1.3, y: -10 }}
               transition={{ type: 'spring', stiffness: 400, damping: 18 }}
-              className="flex-shrink-0 flex flex-col items-center gap-2 cursor-pointer group"
+              className="flex-shrink-0 cursor-pointer"
             >
-              <div className="w-14 h-14 rounded-2xl overflow-hidden shadow-sm group-hover:shadow-lg transition-shadow duration-200">
-                <Image
-                  src={icon.src}
-                  alt={icon.name}
-                  width={56}
-                  height={56}
-                  className="w-full h-full object-cover"
-                  unoptimized
-                />
-              </div>
-              <span className="font-body text-[10px] text-muted/60 group-hover:text-teal-accent transition-colors duration-200 whitespace-nowrap">
-                {icon.name}
-              </span>
+              <Image
+                src={icon.src}
+                alt={icon.name}
+                width={56}
+                height={56}
+                className="object-contain"
+                unoptimized
+              />
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </div>
+  )
+}
+
+// ── AI LOGOS MARQUEE (reverse direction) ─────────────────────────────────────
+
+const AI_LOGOS = [
+  { src: '/assets/ailogos/ChatGPT.png',            name: 'ChatGPT' },
+  { src: '/assets/ailogos/Claude.png',             name: 'Claude' },
+  { src: '/assets/ailogos/Gemini.png',             name: 'Gemini' },
+  { src: '/assets/ailogos/Grok.png',               name: 'Grok' },
+  { src: '/assets/ailogos/DeepSeek.png',           name: 'DeepSeek' },
+  { src: '/assets/ailogos/perplexity.png',         name: 'Perplexity' },
+  { src: '/assets/ailogos/Cursor.png',             name: 'Cursor' },
+  { src: '/assets/ailogos/Microsoft Copilot.png',  name: 'Copilot' },
+  { src: '/assets/ailogos/Mistral AI.png',         name: 'Mistral' },
+  { src: '/assets/ailogos/Cohere.png',             name: 'Cohere' },
+  { src: '/assets/ailogos/manus.png',              name: 'Manus' },
+  { src: '/assets/ailogos/stability.ai.png',       name: 'Stability AI' },
+  { src: '/assets/ailogos/Poe.png',                name: 'Poe' },
+  { src: '/assets/ailogos/Jasper.png',             name: 'Jasper' },
+  { src: '/assets/ailogos/Zapier.png',             name: 'Zapier' },
+  { src: '/assets/ailogos/Flywheel.png',           name: 'Flywheel' },
+  { src: '/assets/ailogos/Glean.png',              name: 'Glean' },
+  { src: '/assets/ailogos/Kimi.png',               name: 'Kimi' },
+  { src: '/assets/ailogos/Fireworks AI.png',       name: 'Fireworks' },
+  { src: '/assets/ailogos/Google Antigravity.png', name: 'Antigravity' },
+  { src: '/assets/ailogos/Apple Intelligence.png', name: 'Apple Intelligence' },
+]
+
+function AILogosMarquee() {
+  const logos = [...AI_LOGOS, ...AI_LOGOS, ...AI_LOGOS]
+
+  return (
+    <div className="bg-white border-b border-dark/8 py-0 overflow-x-hidden">
+      <div className="relative overflow-x-hidden">
+        <div className="absolute left-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
+          style={{ background: 'linear-gradient(to right, white, transparent)' }} />
+        <div className="absolute right-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
+          style={{ background: 'linear-gradient(to left, white, transparent)' }} />
+
+        <motion.div
+          className="flex gap-4 w-max items-center px-4"
+          animate={{ x: ['-33.333%', '0%'] }}
+          transition={{ duration: 80, ease: 'linear', repeat: Infinity, repeatType: 'loop' }}
+        >
+          {logos.map((logo, i) => (
+            <motion.div
+              key={i}
+              whileHover={{ scale: 1.3, y: -10 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 18 }}
+              className="flex-shrink-0 cursor-pointer"
+            >
+              <Image
+                src={logo.src}
+                alt={logo.name}
+                width={300}
+                height={300}
+                className="object-contain"
+                unoptimized
+              />
             </motion.div>
           ))}
         </motion.div>
@@ -476,7 +542,7 @@ function HookSection() {
         variants={slideInLeft}
         initial="hidden"
         animate={isInView ? 'visible' : 'hidden'}
-        className="w-full lg:w-1/2 flex items-center justify-center p-4 lg:p-8 self-stretch"
+        className="w-full lg:w-1/2 flex items-center justify-center p-8 lg:p-14 self-stretch"
       >
         <div
           className="relative rounded-card overflow-hidden w-full"
@@ -498,17 +564,17 @@ function HookSection() {
         variants={slideInRight}
         initial="hidden"
         animate={isInView ? 'visible' : 'hidden'}
-        className="bg-dark w-full lg:w-1/2 flex items-center justify-center px-10 md:px-16 lg:px-20 xl:px-28 py-20 lg:py-0"
+        className="bg-dark w-full lg:w-1/2 flex items-center justify-center px-10 md:px-16 lg:px-16 xl:px-20 py-20 lg:py-16"
       >
-        <div className="w-full max-w-xl">
+        <div className="w-full max-w-lg">
           <SectionLabel color="#2DD4C0">01 — THE PROBLEM</SectionLabel>
           <AnimatedHeading
             text="Everyone's talking about AI. Almost nobody knows how to use it."
             tag="h2"
-            className="font-display font-extrabold text-[clamp(28px,3.2vw,46px)] text-white leading-tight mb-4 uppercase"
+            className="font-display font-extrabold text-[clamp(28px,3.2vw,46px)] text-white leading-tight mb-6 uppercase"
           />
           <div className="w-16 h-1 bg-teal-strong rounded-full mb-8" />
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-6">
             <p className="font-body text-white/55 text-[16px] leading-relaxed">
               The AI conversation is everywhere — in every boardroom, every classroom, every WhatsApp group.
               But most people are still on the outside looking in. They know it matters.
@@ -898,20 +964,38 @@ function TestimonialsSection() {
 
 function TestimonialCard({ t }: { t: typeof TESTIMONIALS[0] }) {
   return (
-    <div className="w-[380px] flex-shrink-0 bg-white rounded-2xl p-7 flex flex-col gap-4"
+    <div className="w-[360px] flex-shrink-0 bg-white rounded-2xl overflow-hidden flex flex-col"
       style={{ boxShadow: '0 4px 32px rgba(45,212,192,0.10)', border: '1px solid rgba(127,232,220,0.4)' }}>
-      <div className="flex items-center gap-1">
-        {Array.from({ length: 5 }).map((_, s) => (
-          <Star key={s} size={13} className="fill-teal-strong text-teal-strong" />
-        ))}
+
+      {/* Top: avatar + stars */}
+      <div className="flex items-end justify-between px-6 pt-4 pb-0">
+        <div className="flex flex-col gap-2 pb-3">
+          <div className="flex items-center gap-1">
+            {Array.from({ length: 5 }).map((_, s) => (
+              <Star key={s} size={12} className="fill-teal-strong text-teal-strong" />
+            ))}
+          </div>
+          <p className="font-body font-semibold text-dark text-sm leading-tight">{t.author}</p>
+          <p className="font-body text-teal-accent text-[11px] font-medium">{t.role} · {t.company}</p>
+        </div>
+        {/* Lottie character */}
+        <div className="w-[110px] h-[110px] flex-shrink-0">
+          <Player
+            src={t.avatar}
+            autoplay
+            loop
+            style={{ width: '100%', height: '100%' }}
+          />
+        </div>
       </div>
-      <p className="font-body text-dark text-[14px] leading-relaxed flex-1">&ldquo;{t.quote}&rdquo;</p>
-      <div className="border-t border-teal-light/60" />
-      <div>
-        <p className="font-body font-semibold text-dark text-sm leading-tight">{t.author}</p>
-        <p className="font-body text-teal-accent text-xs font-medium mt-0.5">{t.role}</p>
-        <p className="font-body text-muted text-xs">{t.company}</p>
-      </div>
+
+      {/* Divider */}
+      <div className="mx-6 border-t border-teal-light/60" />
+
+      {/* Quote */}
+      <p className="font-body text-dark/70 text-[13px] leading-relaxed px-6 py-5">
+        &ldquo;{t.quote}&rdquo;
+      </p>
     </div>
   )
 }
@@ -1179,6 +1263,7 @@ export default function AIWorkshopPage() {
         <Hero />
         <ToolsMarquee />
         <HookSection />
+        <AILogosMarquee />
         <AudienceSection />
         <ModulesSection />
         <OutcomesSection />
