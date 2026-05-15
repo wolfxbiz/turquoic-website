@@ -81,24 +81,28 @@ const AUDIENCES = [
     subtitle: 'HR · Marketing · Sales · Finance',
     description:
       'Stay ahead of automation. Use AI to do in 10 minutes what used to take all day — and never worry about being replaced by someone who knows how to use it.',
+    image: '/assets/images/audience-professionals.svg',
   },
   {
     title: 'Business Owners & Entrepreneurs',
     subtitle: 'SMEs · Retailers · Service Providers',
     description:
       'Cut costs, speed up your operations, and compete with bigger players using tools you can start today — no developer, no budget, no technical background needed.',
+    image: '/assets/images/audience-business.svg',
   },
   {
     title: 'Students & Fresh Graduates',
     subtitle: 'College · Final Year · Job Seekers',
     description:
       'Add AI fluency to your resume before your peers do. Stand out in every interview and every application with skills that most graduates don\'t yet have.',
+    image: '/assets/images/audience-students.svg',
   },
   {
     title: 'Teachers & Educators',
     subtitle: 'Schools · Colleges · Trainers',
     description:
       'Transform your classroom. Use AI to create content, save prep time, and teach smarter — without needing to become a tech expert.',
+    image: '/assets/images/audience-teachers.svg',
   },
 ]
 
@@ -541,7 +545,7 @@ function AudienceSection() {
               variants={fadeUp}
               whileHover={{ scale: 1.02 }}
               transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-              className="group relative rounded-card overflow-hidden p-8 flex flex-col gap-5 cursor-default"
+              className="group relative rounded-card overflow-hidden p-7 flex flex-col justify-between gap-6 cursor-default min-h-[240px]"
               style={{
                 background: 'rgba(255,255,255,0.05)',
                 border: '1px solid rgba(255,255,255,0.09)',
@@ -552,26 +556,32 @@ function AudienceSection() {
               <div className="absolute inset-0 rounded-card opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                 style={{ border: '1px solid rgba(45,212,192,0.4)', boxShadow: 'inset 0 0 40px rgba(45,212,192,0.05)' }} />
 
-              {/* Big faded number */}
-              <span
-                className="font-display font-black leading-none select-none"
-                style={{ fontSize: 'clamp(3rem,5vw,4.5rem)', color: 'rgba(45,212,192,0.15)' }}
-              >
-                0{i + 1}
-              </span>
-
-              {/* Text */}
-              <div>
-                <h3 className="font-display font-black text-[clamp(17px,1.8vw,22px)] text-white uppercase leading-tight tracking-tight mb-1 group-hover:text-teal-mid transition-colors duration-300">
-                  {a.title}
-                </h3>
-                <p className="font-body text-[11px] text-teal-strong uppercase tracking-[0.14em] mb-4">
-                  {a.subtitle}
-                </p>
-                <p className="font-body text-white/55 text-[14px] leading-relaxed">
-                  {a.description}
-                </p>
+              {/* Top row: text left, illustration right */}
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex-1 min-w-0">
+                  <p className="font-body text-[11px] text-teal-strong uppercase tracking-[0.14em] mb-2">
+                    {a.subtitle}
+                  </p>
+                  <h3 className="font-display font-black text-[clamp(16px,1.7vw,21px)] text-white uppercase leading-tight tracking-tight group-hover:text-teal-mid transition-colors duration-300">
+                    {a.title}
+                  </h3>
+                </div>
+                {/* Illustration */}
+                <div className="flex-shrink-0 w-[110px] h-[90px] relative opacity-90 group-hover:opacity-100 transition-opacity duration-300">
+                  <Image
+                    src={a.image}
+                    alt={a.title}
+                    fill
+                    className="object-contain object-right-top"
+                    unoptimized
+                  />
+                </div>
               </div>
+
+              {/* Description */}
+              <p className="font-body text-white/55 text-[13px] leading-relaxed">
+                {a.description}
+              </p>
 
               {/* Bottom line — expands on hover */}
               <motion.span
