@@ -4,7 +4,7 @@ import { useState, useRef } from 'react'
 import { motion, useInView, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Star, CheckCircle2, ArrowRight } from 'lucide-react'
+import { Star, CheckCircle2, ArrowRight, Users, Building2 } from 'lucide-react'
 import SectionLabel from '@/components/ui/SectionLabel'
 import AnimatedHeading from '@/components/ui/AnimatedHeading'
 import AccordionItem from '@/components/landing/ui/AccordionItem'
@@ -207,9 +207,9 @@ function RegisterBtn({ className = '', large = false }: { className?: string; la
 
 // ── HERO ──────────────────────────────────────────────────────────────────────
 
-const h1 = 'LEARN AI.'
-const h2 = 'ONE DAY.'
-const h3 = 'FOR REAL.'
+const h1 = 'EVERYONE TALKS AI.'
+const h2 = 'WE TEACH YOU TO'
+const h3 = 'ACTUALLY USE IT.'
 const w1 = h1.split(' ')
 const w2 = h2.split(' ')
 const w3 = h3.split(' ')
@@ -217,110 +217,111 @@ const allWords = [...w1, ...w2, ...w3]
 
 const NAV_H = 64
 
-function Hero() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start start', 'end start'] })
-  const videoY = useTransform(scrollYProgress, [0, 1], [0, 120])
-  const contentY = useTransform(scrollYProgress, [0, 1], [0, -60])
+const TRUST_STATS = [
+  { value: '200+', label: 'People Trained',  Icon: Users },
+  { value: '15+',  label: 'Organisations',   Icon: Building2 },
+  { value: '4.9★', label: 'Avg. Rating',     Icon: Star },
+]
 
+function Hero() {
   return (
-    <section
-      ref={containerRef}
-      id="hero"
-      className="relative w-full overflow-hidden flex flex-col md:h-screen md:min-h-[600px]"
-    >
-      {/* ── MOBILE ── */}
+    <section id="hero" className="relative w-full overflow-hidden flex flex-col">
+
+      {/* ── MOBILE: image on top, text below ── */}
+      <div className="md:hidden relative w-full overflow-hidden" style={{ paddingTop: NAV_H }}>
+        <Image
+          src="/assets/images/ai-workshop-hero.jpg"
+          alt="AI Workshop — smiling business professionals"
+          width={1200}
+          height={800}
+          className="w-full h-auto"
+          priority
+        />
+        <div className="absolute inset-0 pointer-events-none"
+          style={{ background: 'linear-gradient(to bottom, rgba(45,212,192,0.08) 0%, rgba(255,255,255,0.95) 85%, #ffffff 100%)' }} />
+      </div>
+
       <motion.div
-        initial={{ opacity: 0, y: 24 }}
+        initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.55, delay: 0.15, ease: 'easeOut' }}
-        className="md:hidden bg-white px-6 pb-6 flex flex-col gap-5"
-        style={{ paddingTop: NAV_H + 16 }}
+        className="md:hidden bg-white px-6 py-8 flex flex-col gap-5"
       >
-        <SectionLabel>AI WORKSHOP · ONLINE & IN-PERSON</SectionLabel>
-        <h1 className="font-display font-extrabold text-[38px] leading-[1.02] tracking-tight text-dark">
-          {h1}<br />{h2}<br />
-          <span className="text-teal-accent">{h3}</span>
+        <SectionLabel>TURQUOIC AI WORKSHOP · KERALA</SectionLabel>
+        <h1 className="font-display font-extrabold text-[34px] leading-[1.05] tracking-tight text-dark">
+          Everyone Talks AI.<br />
+          We Teach You To<br />
+          <span className="text-teal-accent">Actually Use It.</span>
         </h1>
-        <p className="font-body text-[16px] text-muted leading-relaxed">
-          A hands-on, 1-day AI workshop for students, working professionals, and business owners. No tech background needed.
+        <p className="font-body text-[17px] text-muted leading-relaxed">
+          Leave with a real AI workflow built for your actual job or business — in one focused day. No technical background needed.
         </p>
         <div className="flex flex-col gap-3">
           <RegisterBtn large className="justify-center" />
           <a href="#modules" className="text-center font-body text-[11px] uppercase tracking-[0.12em] text-muted hover:text-teal-accent transition-colors">
-            See What's Covered ↓
+            See What&apos;s Covered ↓
           </a>
         </div>
-        <div className="grid grid-cols-3 gap-3 mt-2">
-          {[
-            { v: '200+', l: 'People Trained' },
-            { v: '1 Day', l: 'All You Need' },
-            { v: '4.9★', l: 'Avg. Rating' },
-          ].map((s) => (
-            <div key={s.l} className="bg-white rounded-2xl border border-teal-mid/30 p-4 flex flex-col items-center text-center shadow-[0_2px_12px_rgba(45,212,192,0.08)]">
-              <span className="font-display font-extrabold text-[22px] text-dark leading-none">{s.v}</span>
-              <span className="font-body text-[10px] text-teal-accent font-medium uppercase tracking-wide mt-1.5 leading-tight">{s.l}</span>
+        <div className="grid grid-cols-3 gap-3">
+          {TRUST_STATS.map((s) => (
+            <div key={s.label} className="bg-white rounded-2xl border border-teal-mid/30 p-4 flex flex-col items-center text-center shadow-[0_2px_12px_rgba(45,212,192,0.08)]">
+              <div className="w-8 h-8 rounded-lg bg-teal-strong flex items-center justify-center mb-2">
+                <s.Icon className="w-4 h-4 text-white" strokeWidth={2.5} />
+              </div>
+              <span className="font-display font-extrabold text-[22px] text-dark leading-none">{s.value}</span>
+              <span className="font-body text-[10px] text-teal-accent font-medium uppercase tracking-wide mt-1.5 leading-tight">{s.label}</span>
             </div>
           ))}
         </div>
       </motion.div>
 
-      {/* Mobile video */}
-      <div className="md:hidden relative h-[56vmax] max-h-[62vh] min-h-[280px] overflow-hidden flex-shrink-0">
-        <video autoPlay loop muted playsInline className="w-full h-full object-cover object-top">
-          <source src="/assets/videos/hero-video.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 pointer-events-none"
-          style={{ background: 'linear-gradient(180deg, rgba(13,165,160,0.55) 0%, rgba(45,212,192,0.2) 55%, transparent 100%)' }} />
-        <div className="absolute inset-0 pointer-events-none"
-          style={{ background: 'linear-gradient(90deg, rgba(10,130,128,0.45) 0%, transparent 70%)' }} />
-      </div>
-
-      {/* ── DESKTOP ── */}
-      <motion.div style={{ y: videoY }} className="hidden md:block absolute inset-0 w-full h-[120%] -top-[10%]">
-        <video autoPlay loop muted playsInline className="w-full h-full object-cover object-center">
-          <source src="/assets/videos/hero-video.mp4" type="video/mp4" />
-        </video>
-      </motion.div>
-
-      <div className="hidden md:block absolute inset-0 pointer-events-none"
-        style={{ background: 'linear-gradient(180deg, rgba(13,165,160,0.45) 0%, rgba(45,212,192,0.15) 40%, rgba(224,250,248,0.55) 82%, #ffffff 100%)' }} />
-      <div className="hidden md:block absolute inset-0 pointer-events-none"
-        style={{ background: 'linear-gradient(90deg, rgba(10,130,128,0.55) 0%, transparent 60%)' }} />
-
-      <motion.div
-        style={{ y: contentY, paddingTop: NAV_H + 16 }}
-        className="hidden md:flex relative z-10 flex-1 items-center"
+      {/* ── DESKTOP: split — text left, image right ── */}
+      <div
+        className="hidden md:flex min-h-screen bg-white items-center overflow-hidden"
+        style={{ paddingTop: NAV_H }}
       >
-        <div className="w-full max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="max-w-[560px] lg:max-w-[640px]">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="mb-5">
-              <SectionLabel color="rgba(255,255,255,0.80)">AI WORKSHOP · ONLINE & IN-PERSON</SectionLabel>
+        {/* Left — text */}
+        <motion.div
+          className="w-[44%] lg:w-[42%] flex-shrink-0 pl-10 lg:pl-20 xl:pl-28 pr-6 lg:pr-10 pb-20"
+          initial={{ opacity: 0, x: -40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
+        >
+          <div className="max-w-[520px]">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="mb-6"
+            >
+              <SectionLabel>TURQUOIC AI WORKSHOP · KERALA</SectionLabel>
             </motion.div>
 
             <motion.h1
               variants={staggerContainer}
               initial="hidden"
               animate="visible"
-              className="font-display font-extrabold text-[48px] sm:text-[56px] lg:text-[64px] xl:text-[72px] leading-[1.02] tracking-tight text-white mb-5"
+              className="font-display font-extrabold text-[clamp(32px,3.2vw,52px)] leading-[1.05] tracking-tight text-dark mb-5"
             >
               <span className="block">
                 {w1.map((word, i) => (
-                  <motion.span key={i} variants={wordReveal} className="inline-block mr-[0.22em]" transition={{ delay: i * 0.08 }}>
+                  <motion.span key={i} variants={wordReveal} className="inline-block mr-[0.22em]"
+                    transition={{ delay: i * 0.08 }}>
                     {word}
                   </motion.span>
                 ))}
               </span>
               <span className="block">
                 {w2.map((word, i) => (
-                  <motion.span key={i} variants={wordReveal} className="inline-block mr-[0.22em]" transition={{ delay: (w1.length + i) * 0.08 }}>
+                  <motion.span key={i} variants={wordReveal} className="inline-block mr-[0.22em]"
+                    transition={{ delay: (w1.length + i) * 0.08 }}>
                     {word}
                   </motion.span>
                 ))}
               </span>
-              <span className="block text-teal-mid">
+              <span className="block text-teal-accent">
                 {w3.map((word, i) => (
-                  <motion.span key={i} variants={wordReveal} className="inline-block mr-[0.22em]" transition={{ delay: (w1.length + w2.length + i) * 0.08 }}>
+                  <motion.span key={i} variants={wordReveal} className="inline-block mr-[0.22em]"
+                    transition={{ delay: (w1.length + w2.length + i) * 0.08 }}>
                     {word}
                   </motion.span>
                 ))}
@@ -330,33 +331,74 @@ function Hero() {
             <motion.p
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: allWords.length * 0.08 + 0.2 }}
-              className="font-body text-[17px] lg:text-[19px] text-white/85 max-w-md mb-8 leading-relaxed"
+              className="font-body text-[17px] lg:text-[19px] text-muted max-w-md mb-8 leading-relaxed"
             >
-              A hands-on, 1-day workshop for students, working professionals, and business owners.
-              No tech background. Just real skills you use on Monday.
+              Leave with a real AI workflow built for your actual job or business —
+              in one focused day. No technical background needed.
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: allWords.length * 0.08 + 0.4 }}
-              className="flex items-center gap-4"
+              transition={{ duration: 0.6, delay: allWords.length * 0.08 + 0.35 }}
+              className="flex items-center gap-4 mb-10"
             >
               <RegisterBtn large />
-              <a href="#modules" className="font-body font-bold text-[11px] uppercase tracking-[0.12em] text-white/60 hover:text-white transition-colors">
+              <a href="#modules" className="font-body font-bold text-[11px] uppercase tracking-[0.12em] text-muted hover:text-teal-accent transition-colors">
                 See Modules ↓
               </a>
             </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: allWords.length * 0.08 + 0.55 }}
+              className="flex items-center gap-4"
+            >
+              {TRUST_STATS.map((s) => (
+                <div key={s.label} className="bg-white rounded-2xl border border-teal-mid/30 px-4 py-3.5 flex items-center gap-3 shadow-[0_2px_12px_rgba(45,212,192,0.08)]">
+                  <div className="w-9 h-9 rounded-lg bg-teal-strong flex items-center justify-center flex-shrink-0">
+                    <s.Icon className="w-[18px] h-[18px] text-white" strokeWidth={2.5} />
+                  </div>
+                  <div>
+                    <span className="font-display font-extrabold text-lg text-dark leading-none block">{s.value}</span>
+                    <span className="font-body text-[10px] text-teal-accent font-medium uppercase tracking-wide">{s.label}</span>
+                  </div>
+                </div>
+              ))}
+            </motion.div>
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
+
+        {/* Right — image */}
+        <motion.div
+          className="flex-1 self-stretch relative"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
+        >
+          <Image
+            src="/assets/images/ai-workshop-hero.jpg"
+            alt="AI Workshop — smiling business professionals"
+            fill
+            className="object-cover object-center"
+            priority
+          />
+          {/* Blend into white left panel */}
+          <div className="absolute inset-0 pointer-events-none"
+            style={{ background: 'linear-gradient(to right, #ffffff 0%, transparent 18%)' }} />
+          {/* Subtle teal tint */}
+          <div className="absolute inset-0 pointer-events-none"
+            style={{ background: 'linear-gradient(135deg, rgba(45,212,192,0.10) 0%, transparent 55%)' }} />
+        </motion.div>
+      </div>
 
       {/* Logo strip */}
       <motion.div
-        initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 1.0 }}
+        initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 1.0 }}
         className="relative z-10 w-full bg-white py-6 sm:py-8 overflow-hidden"
       >
         <p className="text-center font-body text-[11px] uppercase tracking-[0.15em] text-muted mb-5">
-          Trusted by leading organisations worldwide
+          Professionals from these organisations have attended
         </p>
         <div className="relative">
           <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-28 z-10 pointer-events-none"
