@@ -237,8 +237,6 @@ function Hero() {
           className="w-full h-auto"
           priority
         />
-        <div className="absolute inset-0 pointer-events-none"
-          style={{ background: 'linear-gradient(to bottom, rgba(45,212,192,0.08) 0%, rgba(255,255,255,0.95) 85%, #ffffff 100%)' }} />
       </div>
 
       <motion.div
