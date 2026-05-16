@@ -85,8 +85,8 @@ export default function TeamModal({ member, onClose }: TeamModalProps) {
                     alt={member.name}
                     width={320}
                     height={380}
-                    unoptimized
                     priority
+                    sizes="(max-width: 640px) 90vw, 320px"
                     className="object-contain w-full h-full"
                     style={{ maxHeight: '360px' }}
                   />

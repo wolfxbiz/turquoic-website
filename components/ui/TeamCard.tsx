@@ -53,7 +53,7 @@ export default function TeamCard({ member, index, onClick }: TeamCardProps) {
             width={240}
             height={280}
             priority={false}
-            unoptimized
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
             className="object-contain object-top w-full h-full"
           />
         </motion.div>

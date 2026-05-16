@@ -452,8 +452,8 @@ function ToolsMarquee() {
                 alt={icon.name}
                 width={56}
                 height={56}
+                sizes="56px"
                 className="object-contain"
-                unoptimized
               />
             </motion.div>
           ))}
@@ -517,8 +517,8 @@ function AILogosMarquee() {
                 alt={logo.name}
                 width={300}
                 height={300}
+                sizes="300px"
                 className="object-contain"
-                unoptimized
               />
             </motion.div>
           ))}

@@ -295,7 +295,7 @@ export default function Hero() {
                   alt={logo.alt}
                   width={logo.w}
                   height={48}
-                  unoptimized
+                  sizes="160px"
                   className="object-contain h-full w-auto transition-opacity duration-300 hover:opacity-80"
                 />
               </div>

@@ -114,7 +114,7 @@ function TestimonialCard({ testimonial }: { testimonial: typeof TESTIMONIALS[0] 
                 alt={testimonial.author}
                 width={48}
                 height={48}
-                unoptimized
+                sizes="48px"
                 className="w-full h-full object-cover object-top"
               />
             ) : (
@@ -141,7 +141,7 @@ function TestimonialCard({ testimonial }: { testimonial: typeof TESTIMONIALS[0] 
               src={testimonial.logo}
               alt={testimonial.company}
               fill
-              unoptimized
+              sizes="128px"
               className="object-contain object-right"
             />
           </div>

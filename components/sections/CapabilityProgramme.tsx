@@ -182,8 +182,8 @@ export default function CapabilityProgramme() {
               src="/images/capability-team.png"
               alt="Turquoic capability team"
               fill
-              unoptimized
               priority
+              sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover object-center"
             />
           </div>
